@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "name": "PST Launcher",
+  "description": "Modpack oficial para los eventos de Papita Studio (PST).",
+  "icon": "",
+  "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/",
+  "discord": {
+    "clientId": "",
+    "smallImageText": "EventoPST",
+    "smallImageKey": ""
+  },
+  "meta": {
+    "rss": ""
+  }
+}
