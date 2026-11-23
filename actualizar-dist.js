@@ -1,0 +1,46 @@
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
+
+const repoDir = "D:\\pst-modpack-repo\\pst-modpack";
+const modsDir = path.join(repoDir, "servers", "EventoPST-1.20.1", "forgemods", "required");
+const baseFile = path.join(repoDir, "distribution.base.json");
+const outFile = path.join(repoDir, "distribution.json");
+
+if (!fs.existsSync(baseFile)) {
+  console.error("Falta distribution.base.json en:", baseFile);
+  process.exit(1);
+}
+
+const dist = JSON.parse(fs.readFileSync(baseFile, "utf8"));
+const server = dist.servers.find((s) => s.id === "EventoPST-1.20.1");
+
+if (!server) {
+  console.error("No se encontró el servidor EventoPST-1.20.1");
+  process.exit(1);
+}
+
+const jars = fs.existsSync(modsDir)
+  ? fs.readdirSync(modsDir).filter((f) => f.toLowerCase().endsWith(".jar"))
+  : [];
+
+for (const file of jars) {
+  const fullPath = path.join(modsDir, file);
+  const buffer = fs.readFileSync(fullPath);
+  const md5 = crypto.createHash("md5").update(buffer).digest("hex");
+  const baseName = path.basename(file, ".jar");
+
+  server.modules.push({
+    id: `generated.forgemod:${baseName}@jar`,
+    name: baseName,
+    type: "ForgeMod",
+    artifact: {
+      size: buffer.length,
+      url: `https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/forgemods/required/${encodeURIComponent(file)}`,
+      MD5: md5
+    }
+  });
+}
+
+fs.writeFileSync(outFile, JSON.stringify(dist, null, 2), "utf8");
+console.log(`Listo: se agregaron ${jars.length} mods a distribution.json`);
