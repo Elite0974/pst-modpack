@@ -428,46 +428,6 @@
           ]
         },
         {
-          "id": "generated.forgemod:Axiom-6.0.5-for-MC1.20.1@jar",
-          "name": "Axiom-6.0.5-for-MC1.20.1",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 47163660,
-            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/forgemods/required/Axiom-6.0.5-for-MC1.20.1.jar",
-            "MD5": "1329f96cf60f2914947ad9ecc5a7cdb5"
-          }
-        },
-        {
-          "id": "generated.forgemod:bbs-2.2-1.20.1@jar",
-          "name": "bbs-2.2-1.20.1",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 10498661,
-            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/forgemods/required/bbs-2.2-1.20.1.jar",
-            "MD5": "09aaedf1cbef626187f8a6c7ed2f7c7e"
-          }
-        },
-        {
-          "id": "generated.forgemod:bbs-2.7-1.20.1@jar",
-          "name": "bbs-2.7-1.20.1",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 9218444,
-            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/forgemods/required/bbs-2.7-1.20.1.jar",
-            "MD5": "dddd1ba78e77c68d12377333f931d8de"
-          }
-        },
-        {
-          "id": "generated.forgemod:cfm-forge-1.20.1-7.0.0-pre36@jar",
-          "name": "cfm-forge-1.20.1-7.0.0-pre36",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 2613393,
-            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/forgemods/required/cfm-forge-1.20.1-7.0.0-pre36.jar",
-            "MD5": "faf78627dad9c9c04e7a4fa8992c54dc"
-          }
-        },
-        {
           "id": "generated.forgemod:cloth-config-11.1.136-forge@jar",
           "name": "cloth-config-11.1.136-forge",
           "type": "ForgeMod",
@@ -485,16 +445,6 @@
             "size": 381379,
             "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/forgemods/required/cocoon-rt-2.0.1.jar",
             "MD5": "cf969132ca54976946b5e0f6dec178f1"
-          }
-        },
-        {
-          "id": "generated.forgemod:Connector-1.0.0-beta.49+1.20.1@jar",
-          "name": "Connector-1.0.0-beta.49+1.20.1",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 5046109,
-            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/forgemods/required/Connector-1.0.0-beta.49%2B1.20.1.jar",
-            "MD5": "fd4a04ba4903464280abd0d654f573dc"
           }
         },
         {
@@ -615,16 +565,6 @@
             "size": 92198406,
             "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/forgemods/required/examplemod-1.0.0.jar",
             "MD5": "5f03cc1e6aa9258035342cadcbe047e4"
-          }
-        },
-        {
-          "id": "generated.forgemod:fabric-api-0.92.11+1.20.1@jar",
-          "name": "fabric-api-0.92.11+1.20.1",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 2137144,
-            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/forgemods/required/fabric-api-0.92.11%2B1.20.1.jar",
-            "MD5": "480888e4128874e4be052b0e7ee81697"
           }
         },
         {
