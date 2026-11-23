@@ -1,0 +1,19 @@
+{
+  "model_name": "geometry.r6",
+  "clean_name": "r6",
+  "format_version": "1.12.0",
+  "bone_count": 10,
+  "cube_count": 100,
+  "texture_width": 128.0,
+  "texture_height": 128.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "r6.png",
+  "conversion_date": "2026-10-16T15:49:39.002949800+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [],
+  "entity_identifier": "yamaha:r6",
+  "animations": [
+    "drive",
+    "animation.r6.drive"
+  ]
+}

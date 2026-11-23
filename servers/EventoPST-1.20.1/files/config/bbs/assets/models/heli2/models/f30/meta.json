@@ -1,0 +1,26 @@
+{
+  "model_name": "geometry.f30",
+  "clean_name": "f30",
+  "format_version": "1.12.0",
+  "bone_count": 20,
+  "cube_count": 311,
+  "texture_width": 256.0,
+  "texture_height": 256.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "f31whitegray.png",
+  "conversion_date": "2026-10-16T15:49:38.415621+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "f30blackgray.png",
+    "f30bluetan.png",
+    "f30bluewhite.png",
+    "f30grayblack.png",
+    "f30graybrown.png",
+    "f30whiteblack.png"
+  ],
+  "entity_identifier": "bmw:f31whitegray",
+  "animations": [
+    "animation.f30.drive",
+    "drive"
+  ]
+}

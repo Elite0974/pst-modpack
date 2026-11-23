@@ -1,0 +1,25 @@
+{
+  "model_name": "geometry.explorer",
+  "clean_name": "explorer",
+  "format_version": "1.12.0",
+  "bone_count": 46,
+  "cube_count": 203,
+  "texture_width": 256.0,
+  "texture_height": 256.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "unmarked.png",
+  "conversion_date": "2026-10-16T15:49:39.894716200+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "unmarked.png"
+  ],
+  "entity_identifier": "ford:unmarked",
+  "animations": [
+    "animation.explorer.drive",
+    "animation.explorer.lights",
+    "animation.explorer.nolights",
+    "nolights",
+    "drive",
+    "lights"
+  ]
+}

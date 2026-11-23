@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "minecraft:block/dibujo1",
+    "up": "minecraft:block/dibujo1",
+    "down": "minecraft:block/dibujo1",
+    "north": "minecraft:block/dibujo1",
+    "south": "minecraft:block/dibujo1",
+    "east": "minecraft:block/dibujo1",
+    "west": "minecraft:block/dibujo1"
+  }
+}

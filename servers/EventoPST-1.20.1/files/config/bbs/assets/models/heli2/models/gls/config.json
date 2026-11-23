@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/gls/gls.png",
+  "actions": {
+    "idle": {
+      "name": "drive",
+      "loop": true
+    }
+  }
+}

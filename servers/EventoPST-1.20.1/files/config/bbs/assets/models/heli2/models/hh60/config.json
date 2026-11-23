@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/hh60/hh60.png",
+  "actions": {
+    "idle": {
+      "name": "drive",
+      "loop": true
+    }
+  }
+}

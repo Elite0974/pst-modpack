@@ -1,0 +1,19 @@
+{
+  "model_name": "geometry.k450",
+  "clean_name": "k450",
+  "format_version": "1.12.0",
+  "bone_count": 10,
+  "cube_count": 70,
+  "texture_width": 128.0,
+  "texture_height": 128.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "k450.png",
+  "conversion_date": "2026-10-16T15:49:38.943845100+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [],
+  "entity_identifier": "ktm:k450",
+  "animations": [
+    "drive",
+    "animation.k450.drive"
+  ]
+}

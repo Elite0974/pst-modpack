@@ -1,0 +1,30 @@
+{
+  "model_name": "geometry.987",
+  "clean_name": "987",
+  "format_version": "1.12.0",
+  "bone_count": 14,
+  "cube_count": 181,
+  "texture_width": 256.0,
+  "texture_height": 256.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "987yellowb.png",
+  "conversion_date": "2026-10-16T15:49:39.616914300+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "987black.png",
+    "987blackb.png",
+    "987lime.png",
+    "987orange.png",
+    "987red.png",
+    "987redb.png",
+    "987silver.png",
+    "987silverb.png",
+    "987white.png",
+    "987yellow.png"
+  ],
+  "entity_identifier": "porsche:c987yellowb",
+  "animations": [
+    "drive",
+    "animation.987.drive"
+  ]
+}

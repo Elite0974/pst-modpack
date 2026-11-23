@@ -1,0 +1,23 @@
+{
+  "model_name": "geometry.b206",
+  "clean_name": "b206",
+  "format_version": "1.12.0",
+  "bone_count": 11,
+  "cube_count": 136,
+  "texture_width": 256.0,
+  "texture_height": 256.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "b206.png",
+  "conversion_date": "2026-10-16T15:49:37.571561400+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "b206.png"
+  ],
+  "entity_identifier": "heli:b206",
+  "animations": [
+    "animation.b206.drive",
+    "rotors",
+    "animation.b206.rotors",
+    "drive"
+  ]
+}

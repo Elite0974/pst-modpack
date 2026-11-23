@@ -1,0 +1,27 @@
+{
+  "model_name": "geometry.cessna",
+  "clean_name": "cessna",
+  "format_version": "1.12.0",
+  "bone_count": 15,
+  "cube_count": 163,
+  "texture_width": 256.0,
+  "texture_height": 256.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "seaplane.png",
+  "conversion_date": "2026-10-16T15:49:37.655674500+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "seaplane.png",
+    "cessna.png",
+    "cessna.png"
+  ],
+  "entity_identifier": "plane:seaplane",
+  "animations": [
+    "animation.cessna.drivesea",
+    "animation.cessna.drive",
+    "animation.cessna.rotors",
+    "drive",
+    "rotors",
+    "drivesea"
+  ]
+}

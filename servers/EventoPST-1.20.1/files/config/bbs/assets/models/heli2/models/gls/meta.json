@@ -1,0 +1,33 @@
+{
+  "model_name": "geometry.gls",
+  "clean_name": "gls",
+  "format_version": "1.12.0",
+  "bone_count": 26,
+  "cube_count": 545,
+  "texture_width": 512.0,
+  "texture_height": 512.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "glswhitered.png",
+  "conversion_date": "2026-10-16T15:49:38.818107200+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "GLS Maybach Base.png",
+    "glsblackblack.png",
+    "glsblacksilver.png",
+    "glsbluesilver.png",
+    "glsbluetan.png",
+    "glsgoldwhite.png",
+    "glsgreentan.png",
+    "glsredwhite.png",
+    "glssilverblack.png"
+  ],
+  "entity_identifier": "maybach:glswhitered",
+  "animations": [
+    "drive",
+    "animation.gls.bounce",
+    "bounce",
+    "animation.gls.nobounce",
+    "animation.gls.drive",
+    "nobounce"
+  ]
+}

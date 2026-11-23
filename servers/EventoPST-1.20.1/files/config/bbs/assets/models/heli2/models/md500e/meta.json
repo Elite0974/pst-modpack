@@ -1,0 +1,23 @@
+{
+  "model_name": "geometry.md500e",
+  "clean_name": "md500e",
+  "format_version": "1.12.0",
+  "bone_count": 7,
+  "cube_count": 108,
+  "texture_width": 128.0,
+  "texture_height": 128.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "md500e.png",
+  "conversion_date": "2026-10-16T15:49:37.517735+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "md500e.png"
+  ],
+  "entity_identifier": "heli:md500e",
+  "animations": [
+    "animation.md500e.drive",
+    "drive",
+    "rotors",
+    "animation.md500e.rotors"
+  ]
+}

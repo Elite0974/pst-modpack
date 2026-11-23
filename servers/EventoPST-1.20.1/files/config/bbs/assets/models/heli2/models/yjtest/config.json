@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/yjtest/yjtest.png",
+  "actions": {
+    "idle": {
+      "name": "drive",
+      "loop": true
+    }
+  }
+}

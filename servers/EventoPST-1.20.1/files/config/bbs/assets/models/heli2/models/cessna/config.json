@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/cessna/cessna.png",
+  "actions": {
+    "idle": {
+      "name": "animation.cessna.drivesea",
+      "loop": true
+    }
+  }
+}

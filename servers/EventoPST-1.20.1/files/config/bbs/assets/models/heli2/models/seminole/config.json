@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/seminole/seminole.png",
+  "actions": {
+    "idle": {
+      "name": "rotors",
+      "loop": true
+    }
+  }
+}

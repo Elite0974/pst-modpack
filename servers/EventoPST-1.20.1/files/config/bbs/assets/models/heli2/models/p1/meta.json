@@ -1,0 +1,32 @@
+{
+  "model_name": "geometry.p1",
+  "clean_name": "p1",
+  "format_version": "1.12.0",
+  "bone_count": 14,
+  "cube_count": 185,
+  "texture_width": 256.0,
+  "texture_height": 256.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "p1yellow.png",
+  "conversion_date": "2026-10-16T15:49:39.429579600+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "p1black.png",
+    "p1bluedark.png",
+    "p1bluelight.png",
+    "p1green.png",
+    "p1orangedark.png",
+    "p1orangelight.png",
+    "p1orangelightbald.png",
+    "p1purple.png",
+    "p1reddark.png",
+    "p1redlight.png",
+    "p1silver.png",
+    "p1white.png"
+  ],
+  "entity_identifier": "mcl:p1yellow",
+  "animations": [
+    "drive",
+    "animation.p1.drive"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.md500e.rotors": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"backrotor": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.5": [720, 0, 0]
+					}
+				},
+				"TopRotor": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.5": [0, -360, 0]
+					}
+				}
+			}
+		},
+		"animation.md500e.drive": {
+			"loop": true,
+			"bones": {
+				"root": {
+					"rotation": ["query.vertical_speed*-1", "variable.steering / 6", "-variable.steering / 3"],
+					"position": [0, 16, 0],
+					"scale": 3
+				},
+				"knob": {
+					"rotation": ["query.vertical_speed*-2", 0, "variable.steering * -0.4"]
+				}
+			}
+		}
+	}
+}

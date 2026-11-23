@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/explorer/explorer.png",
+  "actions": {
+    "idle": {
+      "name": "animation.explorer.drive",
+      "loop": true
+    }
+  }
+}

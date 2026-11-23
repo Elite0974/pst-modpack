@@ -1,0 +1,75 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.hh60.rotors": {
+			"loop": true,
+			"animation_length": 0.75,
+			"bones": {
+				"toprotor": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.75": [0, -360, 0]
+					}
+				},
+				"backrotor": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.75": [-720, 0, 0]
+					}
+				},
+				"innerblade1": {
+					"rotation": [-5, 0, 0]
+				},
+				"outerblade1": {
+					"rotation": [-5, 0, 0]
+				},
+				"innerblade2": {
+					"rotation": [-5, 0, 0]
+				},
+				"outerblade2": {
+					"rotation": [-5, 0, 0]
+				},
+				"innerblade3": {
+					"rotation": [-7.5, 0, 0]
+				},
+				"outerblade3": {
+					"rotation": [-7.5, 0, 0]
+				},
+				"innerblade4": {
+					"rotation": [-5, 0, 0]
+				},
+				"outerblade4": {
+					"rotation": [-5, 0, 0]
+				},
+				"Rotor": {
+					"rotation": [2.5, 0, 0]
+				},
+				"Rotor2": {
+					"rotation": [0, 0, 7.5]
+				}
+			}
+		},
+		"animation.hh60.drive": {
+			"loop": true,
+			"bones": {
+				"root": {
+					"rotation": ["query.vertical_speed*-1", "variable.steering / 6", "-variable.steering / 3"],
+					"position": [0, 11, -35],
+					"scale": 3.2
+				},
+				"rudder": {
+					"rotation": ["query.vertical_speed*1.2", 0, 0]
+				},
+				"toprotor": {
+					"rotation": [0, 0, 0]
+				},
+				"Rotor": {
+					"rotation": [2.5, 0, 0]
+				},
+				"Rotor2": {
+					"rotation": [0, 0, 7.5]
+				}
+			}
+		}
+	}
+}

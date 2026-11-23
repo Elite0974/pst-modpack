@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/md500e/md500e.png",
+  "actions": {
+    "idle": {
+      "name": "animation.md500e.drive",
+      "loop": true
+    }
+  }
+}

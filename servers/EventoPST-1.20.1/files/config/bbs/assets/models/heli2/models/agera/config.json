@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/agera/agera.png",
+  "actions": {
+    "idle": {
+      "name": "drive",
+      "loop": true
+    }
+  }
+}

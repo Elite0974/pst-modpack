@@ -1,0 +1,533 @@
+{
+    "workspace": {
+        "layout": {
+            "keyframe_label_width": 120,
+            "unlocked_docks": ["film"],
+            "version": 1,
+            "layouts": {
+                "particle": {
+                    "type": "splitter",
+                    "dir": "v",
+                    "first": {
+                        "ids": ["general", "emitter", "particle", "appearance"],
+                        "active": "general",
+                        "type": "stack"
+                    },
+                    "ratio": 0.22446808,
+                    "second": {
+                        "type": "splitter",
+                        "dir": "h",
+                        "first": {
+                            "id": "preview",
+                            "type": "panel"
+                        },
+                        "ratio": 0.7408994,
+                        "second": {
+                            "id": "molang",
+                            "type": "panel"
+                        }
+                    }
+                },
+                "film": {
+                    "type": "splitter",
+                    "dir": "v",
+                    "first": {
+                        "type": "splitter",
+                        "dir": "v",
+                        "first": {
+                            "type": "splitter",
+                            "dir": "h",
+                            "first": {
+                                "id": "replayProps",
+                                "type": "panel"
+                            },
+                            "ratio": 0.28531468,
+                            "second": {
+                                "id": "replaysList",
+                                "type": "panel"
+                            }
+                        },
+                        "ratio": 0.20135528,
+                        "second": {
+                            "type": "splitter",
+                            "dir": "h",
+                            "first": {
+                                "id": "preview",
+                                "type": "panel"
+                            },
+                            "ratio": 0.73006994,
+                            "second": {
+                                "id": "main",
+                                "type": "panel"
+                            }
+                        }
+                    },
+                    "ratio": 0.8070313,
+                    "second": {
+                        "id": "editArea",
+                        "type": "panel"
+                    }
+                }
+            },
+            "state_editor_size_h": 0.7,
+            "state_editor_size_v": 0.25
+        },
+        "periodic_save": 60,
+        "resizable_panels": true,
+        "keep_frame_on_exit": false,
+        "clip_auto_name": true,
+        "minutes_backup": true
+    },
+    "chroma_sky": {
+        "color": 0,
+        "billboard": 0.0,
+        "terrain": true,
+        "enabled": false
+    },
+    "recording": {
+        "swipe_damage": false,
+        "overlays": true,
+        "teleport": true,
+        "countdown": 1.5,
+        "pose_overlays": 0,
+        "transform_overlays": 0,
+        "camera_preview": true
+    },
+    "video": {
+        "arguments_audio": "-f rawvideo -pix_fmt bgr24 -s %WIDTH%x%HEIGHT% -r %FPS% -i - -i %AUDIO_TRACK% -vf %FILTERS% -c:v libx264 -preset ultrafast -tune zerolatency -qp 18 -pix_fmt yuv420p -c:a aac -b:a 128k -shortest %NAME%.mp4",
+        "log": true,
+        "limit_frame_rate": false,
+        "mute_audio_while_render": true,
+        "filename_format": "{datetime}",
+        "frame_rate": 60,
+        "open_folder_after_export": false,
+        "world_export_resize_window": false,
+        "export_path": "C:\\Users\\mateo\\AppData\\Roaming\\.sklauncher\\instances\\empty-bees-taste\\config\\bbs\\movies",
+        "delay": 0.5,
+        "minecraft_sounds": true,
+        "play_sound_after_export": true,
+        "motion_blur": 0,
+        "arguments_mux": "-y -i %VIDEO% -i %AUDIO_TRACK% -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -shortest %NAME%.mp4",
+        "width": 3840,
+        "encoder_path": "C:\\Users\\mateo\\OneDrive\\Documentos\\bbs\\ffmpeg-8.1.2-full_build\\ffmpeg-8.1.2-full_build\\bin",
+        "held_frames": 1,
+        "arguments": "-f rawvideo -pix_fmt bgr24 -s %WIDTH%x%HEIGHT% -r %FPS% -i - -vf %FILTERS% -c:v libx264 -preset ultrafast -tune zerolatency -qp 18 -pix_fmt yuv420p %NAME%.mp4",
+        "audio": true,
+        "height": 2160
+    },
+    "transformation": {
+        "rotate_3d_sphere_mode": 0,
+        "gizmo_show_rotate": true,
+        "snap_scale": 0.1,
+        "pose_alternate_invert": false,
+        "gizmo_show_translate": true,
+        "gizmo_opacity": 1.0,
+        "gizmo_show_scale": true,
+        "gizmo_show_sphere": true,
+        "rotate_hotkey_order": ["view", "sphere", "x", "y", "z"],
+        "trackball_sensitivity": 1.0,
+        "snap_translate": 1.0,
+        "translate_hotkey_order": ["screen", "x", "y", "z"],
+        "axes_thickness": 0.35,
+        "pose_mirror_edit": false,
+        "pose_show_disabled_bones": false,
+        "gizmo_keep_screen_size": true,
+        "hide_inactive_handles": true,
+        "scale_hotkey_order": ["all", "x", "y", "z"],
+        "gizmo_plane_size": 2.0,
+        "gizmo_show_view_rotate": true,
+        "snap_rotate": 5.0,
+        "gizmos": true,
+        "axes_scale": 2.0,
+        "transform_space": 3,
+        "gizmo_hover_tolerance": 8
+    },
+    "cdn": {
+        "url": "",
+        "token": ""
+    },
+    "model_blocks": {
+        "render_all": true,
+        "click": true
+    },
+    "personalization": {
+        "interface_blur_radius": 12,
+        "interface_shadows": false,
+        "interface_glow": false,
+        "overlay_background_opacity": 0.5,
+        "interface_highlights": false,
+        "secondary_color": 1514274,
+        "primary_color": 16724546,
+        "stencil_highlight_color": 788529151,
+        "interface_blur": true
+    },
+    "appearance": {
+        "texture_sort": "name",
+        "pixel_art_smoothing": true,
+        "hsv_color_picker": true,
+        "texture_pins": ["assets:textures/", "minecraft:textures/block/black_concrete.png"],
+        "recent_data": {
+            "films": [
+                {
+                    "id": "matagente_torre_paredes",
+                    "time": 1795359680795
+                },
+                {
+                    "id": "matagente_torre",
+                    "time": 1795359670675
+                },
+                {
+                    "id": "cena_1",
+                    "time": 1795347223401
+                },
+                {
+                    "id": "llama",
+                    "time": 1795268107291
+                },
+                {
+                    "id": "cena_2",
+                    "time": 1794505100121
+                },
+                {
+                    "id": "camas",
+                    "time": 1794398956326
+                },
+                {
+                    "id": "instruciones_7pecados",
+                    "time": 1794222887111
+                },
+                {
+                    "id": "entrada_7pecados",
+                    "time": 1794222721257
+                },
+                {
+                    "id": "7pecados_tambo",
+                    "time": 1794222712735
+                },
+                {
+                    "id": "totora_salvavida",
+                    "time": 1794222586601
+                },
+                {
+                    "id": "instrucione_totora",
+                    "time": 1794222271045
+                },
+                {
+                    "id": "matagente_ruleta_amarillo",
+                    "time": 1794219446761
+                },
+                {
+                    "id": "matagente_ruleta_morada",
+                    "time": 1794219442516
+                },
+                {
+                    "id": "matagente_ruleta_roja",
+                    "time": 1794219432849
+                },
+                {
+                    "id": "matagente_ruleta_verde",
+                    "time": 1794219425141
+                },
+                {
+                    "id": "matagente_intrucciones",
+                    "time": 1794218401598
+                },
+                {
+                    "id": "instruciones_aguaycemento",
+                    "time": 1793801002844
+                },
+                {
+                    "id": "heli",
+                    "time": 1793729673164
+                },
+                {
+                    "id": "sanmiguel_puente",
+                    "time": 1793729570056
+                },
+                {
+                    "id": "sanmiguel_intrucciones",
+                    "time": 1793702988415
+                }
+            ],
+            "models": [
+                {
+                    "id": "alpaca",
+                    "time": 1794618817327
+                },
+                {
+                    "id": "llama_cadena",
+                    "time": 1794591860294
+                },
+                {
+                    "id": "a",
+                    "time": 1794591730893
+                },
+                {
+                    "id": "llama_camas",
+                    "time": 1794591674092
+                },
+                {
+                    "id": "llama",
+                    "time": 1794591589223
+                },
+                {
+                    "id": "cena/guitarra",
+                    "time": 1794484748239
+                },
+                {
+                    "id": "cena/jefe",
+                    "time": 1794398133999
+                },
+                {
+                    "id": "guardia",
+                    "time": 1793540633424
+                },
+                {
+                    "id": "guardia_oeru",
+                    "time": 1793382974280
+                },
+                {
+                    "id": "player/steve",
+                    "time": 1793354555823
+                },
+                {
+                    "id": "heli2/models/b206",
+                    "time": 1793317710179
+                },
+                {
+                    "id": "emoticons/steve",
+                    "time": 1793231858718
+                },
+                {
+                    "id": "heli",
+                    "time": 1793183624808
+                }
+            ],
+            "audio": [
+                {
+                    "id": "assets:audio/Eva-Ayllon.ogg",
+                    "time": 1793354043771
+                }
+            ],
+            "particles": [
+                {
+                    "id": "salpicadura",
+                    "time": 1790298398617
+                }
+            ]
+        },
+        "ui_scale": 1.5,
+        "language": "es_es",
+        "click_sound": false,
+        "trackpad_scrolling": true,
+        "fov": 70.00001,
+        "recent_colors": [16711680, 1375666176, 1914008582, -15371257, -13829872, -12517632, -65536, -33536, -1055773, -16777216, 2006227207, -16717825, -16711681, -16744449, -15157306, -15153553, -1447447, -1, -1088727809, -15051777, 454841855, -1843972202, 0, -12288, 16764928, -24064, -16711705],
+        "taskbar_side": 0,
+        "replay_sections_filter_migrated": true,
+        "track_styles": {},
+        "favorite_colors": [],
+        "form_cell_size": 60,
+        "texture_cell_size": 80,
+        "trackpad_increments": true,
+        "disabled_sheets": ["vX", "vY", "vZ"],
+        "morphing_focus_search": false,
+        "disabled_morph_form_categories": [],
+        "force_qwerty": false,
+        "uniform_scale": false
+    },
+    "performance": {
+        "freeze_models": false,
+        "frame_pose_cache": true,
+        "multiskin_multithreaded": true,
+        "translucency_queue": false,
+        "frustum_culling": false,
+        "list_model_preview": true,
+        "profiler_overlay": false
+    },
+    "scrollbars": {
+        "sensitivity_horizontal": 1.0,
+        "smoothness": true,
+        "smoothness_intensity": 0.75,
+        "width": 4,
+        "disable_smoothness_in_editors": false,
+        "sensitivity": 1.0
+    },
+    "tutorials": {
+        "cursor": false,
+        "mouse_buttons": false,
+        "keystrokes_offset": 10,
+        "keystrokes": false,
+        "keystrokes_position": 1,
+        "welcome_seen": true,
+        "tours_done": ["model_editor", "film", "particles", "dashboard"]
+    },
+    "viewport": {
+        "motion_path": {
+            "keyframes": true,
+            "keyframe_size": 0.055,
+            "current_color": -25027,
+            "color": -12203777,
+            "frames": true,
+            "keyframe_color": -1,
+            "before": 20,
+            "gradient": true,
+            "current_size": 0.075,
+            "frame_size": 0.03,
+            "enabled": false,
+            "current": true,
+            "around_current": false,
+            "width": 0.05,
+            "past_color": -14992814,
+            "after": 20,
+            "future_color": -1640705
+        },
+        "preview_size_mode": 0,
+        "onion_skin": {
+            "all": false,
+            "pre_frames": 1,
+            "pre_color": -1140903117,
+            "post_frames": 1,
+            "enabled": false,
+            "post_color": -1154220237,
+            "group": "pose"
+        },
+        "physics_debug": {
+            "dashed": false,
+            "joints": {
+                "visible": true,
+                "color": 16777215,
+                "size": 0.12,
+                "shape": 0
+            },
+            "root": {
+                "visible": false,
+                "color": 16754732,
+                "size": 0.45,
+                "shape": 3
+            },
+            "xray": true,
+            "tip": {
+                "visible": false,
+                "color": 5088255,
+                "size": 0.2,
+                "shape": 0
+            },
+            "attach": {
+                "visible": false,
+                "color": 3724940,
+                "size": 0.12,
+                "shape": 2
+            },
+            "opacity": 0.5,
+            "lines": {
+                "visible": false,
+                "color": 15133682,
+                "size": 0.2
+            },
+            "enabled": false,
+            "wind": {
+                "visible": true,
+                "color": 9237247,
+                "size": 2.0
+            }
+        },
+        "preview_icons_auto_hide": false,
+        "center_lines": true,
+        "preview_custom_width": 1280,
+        "clip_preview": true,
+        "crosshair": false,
+        "preview_custom_height": 720,
+        "rule_of_thirds": true,
+        "ik_debug": {
+            "dashed": false,
+            "joints": {
+                "visible": false,
+                "color": 15133682,
+                "size": 0.07,
+                "shape": 0
+            },
+            "xray": true,
+            "tip": {
+                "visible": false,
+                "color": 5088255,
+                "size": 0.1,
+                "shape": 4
+            },
+            "opacity": 0.5,
+            "lines": {
+                "visible": false,
+                "color": 15133682,
+                "size": 0.05
+            },
+            "pole": {
+                "visible": true,
+                "color": 16747558,
+                "size": 0.05,
+                "shape": 1
+            },
+            "enabled": false,
+            "target": {
+                "visible": true,
+                "color": 16777215,
+                "size": 0.15,
+                "shape": 0
+            }
+        },
+        "guides_color": -859045888,
+        "preview_resolution_scale": 2.0,
+        "preview_selection_hud": true
+    },
+    "background": {
+        "color": -1157627904
+    },
+    "timeline": {
+        "timeline_grid": false,
+        "keyframe_preview": true,
+        "keyframe_default_style": {},
+        "snap_to_markers": false,
+        "stop_playback_on_scrub": false,
+        "auto_keyframe": false,
+        "anchor_keep_transform": true,
+        "keyframe_default_interpolation": "hermite",
+        "snap_to_ticks": true,
+        "snap_to_film_markers": true,
+        "duration": 30,
+        "restart_on_seek": false,
+        "seconds": true,
+        "rewind": true,
+        "loop": false,
+        "horizontal_clip_editor": true,
+        "jump": 5,
+        "track_width": 2
+    },
+    "audio": {
+        "waveform_visible_preview": false,
+        "waveform_density": 20,
+        "waveform_width": 0.8,
+        "waveform_height": 24,
+        "waveform_time": false,
+        "waveform_preview_combined": false,
+        "waveform_filename": false,
+        "waveform_visible_keyframes": true
+    },
+    "camera": {
+        "orbit_gizmo_scale": 0.75,
+        "angle_speed": 1.0,
+        "camera_mode": 1,
+        "horizontal_flight": false,
+        "speed": 1.0,
+        "player_follows_camera": false,
+        "flight_free_look": false,
+        "orbit_movement_requires_flight": true,
+        "orbit_center_marker": false,
+        "orbit_axis_ortho": true,
+        "orbit_teleport_on_switch": true,
+        "orbit_gizmo": true,
+        "camera_smoothness": 0.1
+    },
+    "misc": {
+        "shader_curves": true,
+        "damage_control": true,
+        "entity_selectors_whitelist": "CustomName,Name"
+    }
+}

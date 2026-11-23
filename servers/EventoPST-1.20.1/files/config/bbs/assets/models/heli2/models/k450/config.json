@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/k450/k450.png",
+  "actions": {
+    "idle": {
+      "name": "drive",
+      "loop": true
+    }
+  }
+}

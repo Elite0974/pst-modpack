@@ -1,0 +1,46 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.seminole.drive": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"rotation": ["query.vertical_speed*-1", "variable.steering / 6", "-variable.steering / 1.2"]
+				},
+				"l": {
+					"rotation": [-0.6108, 4.9626, -7.0264]
+				},
+				"r": {
+					"rotation": [-0.6109, -4.9626, 7.0264]
+				},
+				"root": {
+					"scale": 3
+				},
+				"bone4": {
+					"rotation": ["variable.steering / 2", 0, 0]
+				},
+				"bone3": {
+					"rotation": ["-variable.steering / 2", 0, 0]
+				}
+			}
+		},
+		"animation.seminole.rotors": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"bone": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"1.0": [0, 0, -720]
+					}
+				},
+				"bone2": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"1.0": [0, 0, 720]
+					}
+				}
+			}
+		}
+	}
+}

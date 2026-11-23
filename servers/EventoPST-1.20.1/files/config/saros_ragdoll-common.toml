@@ -1,0 +1,30 @@
+
+[configuration]
+	#Item required to revive a player (minecraft:air for nothing)
+	ReviveItem = "saros_ragdoll:firstaidkit"
+	#Error message if the player does not have the required item
+	ReviveItemDescription = "You need a first aid kit to revive the player"
+	#Require the revive item in hand to revive a player (false = revive with empty hand)
+	RequireReviveItem = true
+	#Show GUI when in ragdoll mode
+	ToggleRagdollGUI = true
+	#Require OP permissions for the revive command
+	RequireOPForRevive = true
+	#Item drop behavior: NoDrop, DropMainHand, DropWhenGetInRagdoll, DropWhenRespawn
+	DropItems = "DropWhenRespawn"
+	#Wait time in seconds before Respawn button activates (0 = no timer)
+	#Range: 0 ~ 3600
+	RespawnTimer = 62
+	#Show Exit button in the death GUI
+	ShowExitButton = true
+	#Show Revive button in the death GUI
+	ShowReviveButton = true
+	#Show Respawn button in the death GUI
+	ShowRespawnButton = true
+	#Enable verbose ragdoll/physics/native logs
+	debug = false
+	#Ragdoll physics feel:
+	# 'smooth'  = calmer, parts settle naturally (angular damping)
+	# 'floppy'  = raw / loose, more chaotic (no damping)
+	PhysicsMode = "smooth"
+

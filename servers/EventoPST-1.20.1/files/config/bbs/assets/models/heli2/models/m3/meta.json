@@ -1,0 +1,35 @@
+{
+  "model_name": "geometry.m3",
+  "clean_name": "m3",
+  "format_version": "1.12.0",
+  "bone_count": 16,
+  "cube_count": 375,
+  "texture_width": 256.0,
+  "texture_height": 256.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "m3yellowwhite.png",
+  "conversion_date": "2026-10-16T15:49:38.560117200+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "m3blackwhite.png",
+    "m3blueblue.png",
+    "m3bluetan.png",
+    "m3greengrey.png",
+    "m3greentan.png",
+    "m3greygrey.png",
+    "m3orangeblack.png",
+    "m3pbr.png",
+    "m3pinkwhite.png",
+    "m3purplewhite.png",
+    "m3redblack.png",
+    "m3redred.png",
+    "m3whitered.png",
+    "m3whitewhite.png",
+    "m3yellowblue.png"
+  ],
+  "entity_identifier": "bmw:m3yellowwhite",
+  "animations": [
+    "drive",
+    "animation.m3.drive"
+  ]
+}

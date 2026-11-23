@@ -1,0 +1,25 @@
+{
+  "model_name": "geometry.458",
+  "clean_name": "458",
+  "format_version": "1.12.0",
+  "bone_count": 13,
+  "cube_count": 194,
+  "texture_width": 256.0,
+  "texture_height": 256.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "458yellow.png",
+  "conversion_date": "2026-10-16T15:49:38.294946+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "458blue.png",
+    "458red.png",
+    "458redgte.png",
+    "458white.png",
+    "458whitegte.png"
+  ],
+  "entity_identifier": "458:yellow",
+  "animations": [
+    "animation.458.drive",
+    "drive"
+  ]
+}

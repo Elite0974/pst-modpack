@@ -1,0 +1,120 @@
+{
+	"credit": "Made with Blockbench",
+	"textureSize": [128, 128],
+	"texture": "textures/block/bed.png",
+	"models": [
+		{
+			"part": "leg4",
+			"id": "leg4",
+			"invertAxis": "xy",
+			"translate": [-9, -9, 18],
+			"rotate": [0, 90, 0],
+			"boxes": [
+				{"coordinates": [21, 0, -24, 3, 3, 3], "textureOffset": [100, 24]}
+			],
+			"animations": [
+				{
+					"this.ry": 0
+				}
+			]
+		},
+		{
+			"part": "leg3",
+			"id": "leg3",
+			"invertAxis": "xy",
+			"translate": [-10, -9, 8],
+			"boxes": [
+				{"coordinates": [5, 0, -24, 3, 3, 3], "textureOffset": [100, 0]}
+			]
+		},
+		{
+			"part": "leg2",
+			"id": "leg2",
+			"invertAxis": "xy",
+			"translate": [36, -9, 28],
+			"rotate": [180, 0, 180],
+			"boxes": [
+				{"coordinates": [21, 0, 24, 3, 3, 3], "textureOffset": [100, 36]}
+			],
+			"animations": [
+				{
+					"this.ry": 0
+				}
+			]
+		},
+		{
+			"part": "leg1",
+			"id": "leg1",
+			"invertAxis": "xy",
+			"translate": [-9, -9, -20],
+			"rotate": [0, -90, 0],
+			"boxes": [
+				{"coordinates": [5, 0, 24, 3, 3, 3], "textureOffset": [100, 12]}
+			],
+			"animations": [
+				{
+					"this.ry": 0
+				}
+			]
+		},
+		{
+			"part": "foot",
+			"id": "foot",
+			"invertAxis": "xy",
+			"translate": [-8, -23, 0],
+			"rotate": [90, 0, 0],
+			"boxes": [
+				{"coordinates": [-25, -8, 0, 34, 30, 6], "textureOffset": [0, 51]}
+			],
+			"animations": [
+				{
+					"this.rx": 0
+				}
+			]
+		},
+		{
+			"part": "head",
+			"id": "head",
+			"invertAxis": "xy",
+			"translate": [-8, -7, 0],
+			"rotate": [90, 0, 0],
+			"boxes": [
+				{"coordinates": [-25, -10, 0, 34, 16, 6], "textureOffset": [6, 4]}
+			],
+			"submodels": [
+				{
+					"id": "bone",
+					"invertAxis": "xy",
+					"translate": [0, 17, -5],
+					"rotate": [-90, 0, 0],
+					"boxes": [
+						{
+							"coordinates": [-8.1, -14, -26, 17, 8, 16],
+							"uvNorth": [96, 102, 128, 118],
+							"uvEast": [96, 102, 128, 118],
+							"uvSouth": [96, 102, 128, 118],
+							"uvWest": [96, 102, 128, 118],
+							"uvUp": [96, 68, 128, 100],
+							"uvDown": [96, 68, 128, 100]
+						},
+						{
+							"coordinates": [-8.1, -14, -42, 17, 8, 16],
+							"uvNorth": [96, 104, 128, 120],
+							"uvEast": [96, 104, 128, 120],
+							"uvSouth": [96, 104, 128, 120],
+							"uvWest": [96, 104, 128, 120],
+							"uvUp": [96, 70, 128, 102],
+							"uvDown": [96, 70, 128, 102]
+						},
+						{"coordinates": [-19, -6, -24, 22, 3, 10], "textureOffset": [64, 12]}
+					]
+				}
+			],
+			"animations": [
+				{
+					"this.rx": 0
+				}
+			]
+		}
+	]
+}

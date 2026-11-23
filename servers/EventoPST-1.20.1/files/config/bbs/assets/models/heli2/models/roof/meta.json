@@ -1,0 +1,23 @@
+{
+  "model_name": "geometry.roof",
+  "clean_name": "roof",
+  "format_version": "1.19.0",
+  "bone_count": 2,
+  "cube_count": 35,
+  "texture_width": 512.0,
+  "texture_height": 512.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "roof.png",
+  "conversion_date": "2026-10-16T15:49:39.665761+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "roof.png"
+  ],
+  "entity_identifier": null,
+  "animations": [
+    "first_person_hold",
+    "animation.roof.third_person_hold",
+    "third_person_hold",
+    "animation.roof.first_person_hold"
+  ]
+}

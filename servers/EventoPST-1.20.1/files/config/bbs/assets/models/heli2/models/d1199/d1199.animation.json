@@ -1,0 +1,29 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.d1199.drive": {
+			"loop": true,
+			"bones": {
+				"duck1199": {
+					"rotation": ["query.vertical_speed*-1", 0, "variable.steering * -0.1"]
+				},
+				"Wheel": {
+					"rotation": ["query.modified_distance_moved * 20", 0, 0]
+				},
+				"front": {
+					"rotation": [67.5, 0, 0]
+				},
+				"Fork": {
+					"rotation": [0, 0, "variable.steering * -0.2"]
+				},
+				"Wheel2": {
+					"rotation": ["query.modified_distance_moved * 20", 0, 0]
+				},
+				"root": {
+					"rotation": ["query.vertical_speed*-1", 0, "variable.steering * -0.1"],
+					"scale": 1.3
+				}
+			}
+		}
+	}
+}

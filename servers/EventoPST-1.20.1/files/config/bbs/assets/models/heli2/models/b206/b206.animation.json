@@ -1,0 +1,51 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.b206.rotors": {
+			"loop": true,
+			"animation_length": 0.2083,
+			"bones": {
+				"BackRotor": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.2083": [360, 0, 0]
+					}
+				},
+				"TopRotor": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.2083": [0, -360, 0]
+					}
+				},
+				"outer1": {
+					"rotation": [0, 0, -5]
+				},
+				"outer2": {
+					"rotation": [0, 0, 5]
+				},
+				"inner1": {
+					"rotation": [0, 0, -5]
+				},
+				"inner2": {
+					"rotation": [0, 0, 5]
+				}
+			}
+		},
+		"animation.b206.drive": {
+			"loop": true,
+			"bones": {
+				"knob": {
+					"rotation": ["query.vertical_speed*-2", 0, "variable.steering * -0.4"]
+				},
+				"knob2": {
+					"rotation": ["query.vertical_speed*-2", 0, "variable.steering * -0.4"]
+				},
+				"root": {
+					"rotation": ["query.vertical_speed*-1", "variable.steering / 6", "-variable.steering / 3"],
+					"position": [0, 11, 0],
+					"scale": 3
+				}
+			}
+		}
+	}
+}

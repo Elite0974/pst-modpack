@@ -1,0 +1,24 @@
+{
+  "model_name": "geometry.piper",
+  "clean_name": "piper",
+  "format_version": "1.12.0",
+  "bone_count": 14,
+  "cube_count": 153,
+  "texture_width": 128.0,
+  "texture_height": 128.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "piper.png",
+  "conversion_date": "2026-10-16T15:49:37.868615900+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "piper.png"
+  ],
+  "entity_identifier": "plane:piper",
+  "animations": [
+    "drive",
+    "animation.piper.drive",
+    "animation.cherokee.rotors",
+    "rotors",
+    "animation.piper.rotors"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/d1199/d1199.png",
+  "actions": {
+    "idle": {
+      "name": "animation.d1199.drive",
+      "loop": true
+    }
+  }
+}

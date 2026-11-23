@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/f30/f30.png",
+  "actions": {
+    "idle": {
+      "name": "animation.f30.drive",
+      "loop": true
+    }
+  }
+}

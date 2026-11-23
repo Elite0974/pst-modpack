@@ -1,0 +1,195 @@
+{
+	"credit": "Made with Blockbench",
+	"textureSize": [48, 48],
+	"texture": "textures/block/texture.png",
+	"models": [
+		{
+			"part": "bottom",
+			"id": "bottom",
+			"invertAxis": "xy",
+			"translate": [30, 2, 15],
+			"rotate": [90, 0, 0],
+			"boxes": [
+				{
+					"coordinates": [-36, -20.53579, -4.7695, 12, 10, 12],
+					"uvNorth": [16, 0, 0, 16],
+					"uvEast": [16, 0, 32, 16],
+					"uvSouth": [0, 0, 16, 16],
+					"uvWest": [16, 0, 32, 16],
+					"uvUp": [0, 48, 16, 32],
+					"uvDown": [32, 0, 48, 16]
+				},
+				{
+					"coordinates": [-24, -20.53579, -4.7695, 12, 10, 12],
+					"uvNorth": [16, 0, 0, 16],
+					"uvEast": [16, 0, 32, 16],
+					"uvSouth": [0, 0, 16, 16],
+					"uvWest": [16, 0, 32, 16],
+					"uvUp": [0, 48, 16, 32],
+					"uvDown": [32, 0, 48, 16]
+				},
+				{
+					"coordinates": [-48, -20.53579, -4.7695, 12, 10, 12],
+					"uvNorth": [16, 0, 0, 16],
+					"uvEast": [16, 0, 32, 16],
+					"uvSouth": [0, 0, 16, 16],
+					"uvWest": [16, 0, 32, 16],
+					"uvUp": [0, 48, 16, 32],
+					"uvDown": [32, 0, 48, 16]
+				}
+			],
+			"submodels": [
+				{
+					"id": "bone",
+					"invertAxis": "xy",
+					"translate": [-59.51173, -13.57644, 1.48491],
+					"rotate": [0, 0, -12.5],
+					"boxes": [
+						{
+							"coordinates": [-6, -3, -4, 18, 8, 8],
+							"uvNorth": [16, 0, 0, 16],
+							"uvEast": [16, 0, 32, 16],
+							"uvSouth": [0, 0, 16, 16],
+							"uvWest": [16, 0, 32, 16],
+							"uvUp": [0, 48, 16, 32],
+							"uvDown": [32, 0, 48, 16]
+						}
+					]
+				},
+				{
+					"id": "bone5",
+					"invertAxis": "xy",
+					"translate": [3.48827, -11.57644, 1.48491],
+					"rotate": [0, 0, -157.5],
+					"boxes": [
+						{
+							"coordinates": [3, -7, -4, 14, 8, 8],
+							"uvNorth": [16, 0, 0, 16],
+							"uvEast": [16, 0, 32, 16],
+							"uvSouth": [0, 0, 16, 16],
+							"uvWest": [16, 0, 32, 16],
+							"uvUp": [0, 48, 16, 32],
+							"uvDown": [32, 0, 48, 16]
+						}
+					]
+				},
+				{
+					"id": "bone6",
+					"invertAxis": "xy",
+					"translate": [18.48827, -3.57644, 1.48491],
+					"rotate": [0, 0, -147.5],
+					"boxes": [
+						{
+							"coordinates": [8, -8, -3, 12, 6, 6],
+							"uvNorth": [16, 0, 0, 16],
+							"uvEast": [16, 0, 32, 16],
+							"uvSouth": [0, 0, 16, 16],
+							"uvWest": [16, 0, 32, 16],
+							"uvUp": [0, 48, 16, 32],
+							"uvDown": [32, 0, 48, 16]
+						}
+					]
+				},
+				{
+					"id": "bone2",
+					"invertAxis": "xy",
+					"translate": [-79.51173, -7.57644, 1.48491],
+					"rotate": [0, 0, -25],
+					"boxes": [
+						{
+							"coordinates": [-5, 0, -4, 20, 5, 8],
+							"uvNorth": [16, 0, 0, 16],
+							"uvEast": [16, 0, 32, 16],
+							"uvSouth": [0, 0, 16, 16],
+							"uvWest": [16, 0, 32, 16],
+							"uvUp": [0, 48, 16, 32],
+							"uvDown": [32, 0, 48, 16]
+						}
+					]
+				},
+				{
+					"id": "bone3",
+					"invertAxis": "xy",
+					"translate": [-95.11379, 6.45619, 1.48491],
+					"rotate": [0, 0, -30]
+				},
+				{
+					"id": "bone4",
+					"invertAxis": "xy",
+					"translate": [-105.87744, 17.65622, 1.48491],
+					"rotate": [0, 0, -37.5]
+				}
+			]
+		},
+		{
+			"part": "front",
+			"id": "front",
+			"invertAxis": "xy",
+			"translate": [59.51173, -19.95935, 31.74559],
+			"rotate": [0, 0, -20],
+			"animations": [
+				{
+					"this.ry": 0
+				}
+			]
+		},
+		{
+			"part": "left",
+			"id": "left",
+			"invertAxis": "xy",
+			"translate": [47, -15, 23],
+			"rotate": [0, -90, 0],
+			"animations": [
+				{
+					"this.ry": 0
+				}
+			]
+		},
+		{
+			"part": "right",
+			"id": "right",
+			"invertAxis": "xy",
+			"translate": [29, -15, 23],
+			"rotate": [0, 90, 0],
+			"animations": [
+				{
+					"this.ry": 0
+				}
+			]
+		},
+		{
+			"part": "back",
+			"id": "back",
+			"invertAxis": "xy",
+			"translate": [42, -15, 8]
+		},
+		{
+			"part": "paddle_left",
+			"id": "paddle_left",
+			"invertAxis": "xy",
+			"translate": [47, -24, 26],
+			"rotate": [-124, -50, 165],
+			"animations": [
+				{
+					"this.rx": 0,
+					"this.ry": 0,
+					"this.rz": 0
+				}
+			]
+		},
+		{
+			"part": "paddle_right",
+			"id": "paddle_right",
+			"invertAxis": "xy",
+			"translate": [29, -24, 26],
+			"rotate": [-124, 50, -165],
+			"animations": [
+				{
+					"this.rx": 0,
+					"this.ry": 0,
+					"this.rz": 0
+				}
+			]
+		}
+	]
+}

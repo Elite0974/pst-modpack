@@ -1,0 +1,70 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.cessna.drive": {
+			"loop": true,
+			"bones": {
+				"cessna": {
+					"rotation": ["query.vertical_speed*-1", "variable.steering / 6", "-variable.steering / 1.2"]
+				},
+				"fl": {
+					"rotation": [0, 0, -2.5]
+				},
+				"fr": {
+					"rotation": [0, 0, 2.5]
+				},
+				"rear": {
+					"rotation": ["query.vertical_speed*1.2", 0, 0]
+				},
+				"root": {
+					"scale": 3
+				},
+				"bone3": {
+					"rotation": ["variable.steering / 2", 0, 0]
+				},
+				"bone2": {
+					"rotation": ["-variable.steering / 2", 0, 0]
+				}
+			}
+		},
+		"animation.cessna.rotors": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"bone": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"1.0": [0, 0, 720]
+					}
+				}
+			}
+		},
+		"animation.cessna.drivesea": {
+			"loop": true,
+			"bones": {
+				"cessna": {
+					"rotation": ["query.vertical_speed*-1", "variable.steering / 6", "-variable.steering / 1.2"]
+				},
+				"fl": {
+					"rotation": [0, 0, -2.5]
+				},
+				"fr": {
+					"rotation": [0, 0, 2.5]
+				},
+				"rear": {
+					"rotation": ["query.vertical_speed*1.2", 0, 0]
+				},
+				"root": {
+					"position": [0, 10, 0],
+					"scale": 3
+				},
+				"bone3": {
+					"rotation": ["variable.steering / 2", 0, 0]
+				},
+				"bone2": {
+					"rotation": ["-variable.steering / 2", 0, 0]
+				}
+			}
+		}
+	}
+}

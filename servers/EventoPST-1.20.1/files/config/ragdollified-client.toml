@@ -1,0 +1,38 @@
+
+#Render Settings
+[render]
+	#Distance in blocks beyond which ragdolls do not render.
+	#Range: 4.0 ~ 512.0
+	renderDistance = 128.0
+	#Switch for death camera.
+	enableDeathCamera = true
+	#Distance in blocks within which GeckoLib animated armor renders on ragdolls. Lower values improve performance. Must be less than or equal to renderDistance.
+	#Range: 4.0 ~ 128.0
+	geckolibArmorRenderDistance = 80.0
+	#Distance in blocks within which vanilla armor renders on ragdolls.
+	#Range: 4.0 ~ 512.0
+	armorRenderDistance = 100.0
+
+#Physics Engine
+[physics]
+	#Which physics engine simulates ragdolls.
+	#  jolt    - Jolt Physics through JNI. Native, SIMD, parallel solver. Default.
+	#  jbullet - the original pure-Java Bullet 2.72 port. Slower, but has no native
+	#            library to load, so it is the fallback if Jolt cannot start.
+	#Jolt falls back to jbullet automatically if its native library fails to load.
+	#Takes effect on the next world load.
+	physicsEngine = "jolt"
+	#Worker threads Jolt may use for its own solver, on top of the mod's physics thread.
+	#0 picks a value from the CPU count. Kept small on purpose: these share a machine
+	#with Minecraft's render and main threads. Ignored by the jbullet engine.
+	#Range: 0 ~ 16
+	physicsSolverThreads = 0
+
+#Debug Options
+[debug]
+	#Render debug boxes around ragdoll physics bodies.
+	debugRenderPhysics = true
+	#Periodically log ragdoll physics performance stats ([Ragdoll Perf]) to the client log.
+	#Useful for profiling tick cost; leave off for normal play to keep the log clean.
+	logPhysicsPerf = false
+

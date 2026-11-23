@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/huracan/huracan.png",
+  "actions": {
+    "idle": {
+      "name": "animation.huracan.drive",
+      "loop": true
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "culling": false,
+    "texture": "assets:models/heli2/models/b206/b206.png",
+    "cem_parents": {},
+    "ui_scale": 1.0,
+    "scale": [1.0, 1.0, 1.0],
+    "procedural": false,
+    "on_cpu": false,
+    "disabledBones": [],
+    "welds": [],
+    "pose_group": "",
+    "anchor": "",
+    "sneaking_pose": {
+        "pose": {}
+    },
+    "cem_animation": true
+}

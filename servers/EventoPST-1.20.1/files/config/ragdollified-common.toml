@@ -1,0 +1,481 @@
+
+["Ragdoll Settings"]
+	#How long ragdolls last before despawning, in ticks.
+	#Range: 20 ~ 12000
+	ragdollLifetime = 600
+	#Maximum number of ragdolls that can exist at once. Past this the oldest is removed.
+	#The ceiling is deliberately far above the default: what a machine can carry depends on
+	#the hardware, so the limit is yours to raise. Watch the physics= figure in the perf log.
+	#Range: 1 ~ 1000
+	maxRagdolls = 40
+	#Maximum number of a single player's death ragdolls that can exist at once. When a player
+	#dies past this many times in quick succession, their oldest ragdoll is removed to make room.
+	#An addon can suppress this entirely while a body stands in for something that must
+	#not be culled, such as loot waiting to be materialized into its own entity.
+	#Range: 1 ~ 20
+	maxRagdollsPerPlayer = 3
+	#Master switch for ragdoll spawning.
+	enableRagdolls = true
+	#Allow player death ragdolls.
+	enablePlayerRagdolls = true
+	#Allow non-player (mob) death ragdolls.
+	enableMobRagdolls = true
+	#Entity registry ids that should never ragdoll. Use minecraft:player for players.
+	#Entries here never spawn ragdolls, even when an authored model exists.
+	entityDenylist = []
+
+#Hit Impulse Settings
+[hitImpulse]
+	#Base impulse magnitude for a TACZ headshot.
+	#Range: 0.0 ~ 200.0
+	headshot = 6.0
+	#Base impulse magnitude for a TACZ body shot.
+	#Range: 0.0 ~ 200.0
+	body = 4.0
+	#Base impulse magnitude for melee kills.
+	#Range: 0.0 ~ 200.0
+	melee = 10.0
+	#Base impulse magnitude for vanilla projectiles.
+	#Range: 0.0 ~ 200.0
+	vanillaProjectile = 8.0
+	#Base impulse magnitude for explosion kills (TNT, creepers, TACZ explosives, etc.).
+	#The applied force still scales with the victim's max health and distance from the blast;
+	#this is the overall multiplier. Higher = bodies are thrown further.
+	#Range: 0.0 ~ 200.0
+	explosion = 40.0
+	#Constant upward kick added to every hit, in the same units as the base
+	#magnitudes above. Flat, so it means very different things to a 4.0 body shot
+	#and a 40.0 explosion; verticalLift below is the proportional term and is the
+	#one to reach for first.
+	#Range: 0.0 ~ 5.0
+	verticalBias = 0.3
+	#Upward kick as a fraction of the hit's own horizontal magnitude, added on top
+	#of verticalBias.
+	#This is what decides whether a body tumbles or slides, and it does not do it by
+	#adding any rotation of its own. A corpse whose feet are still on the ground when
+	#the shot lands has its momentum bled straight into the floor: friction under the
+	#boots against a torso trying to translate is a shove, and a shove is all it can
+	#ever read as. Unweight it first and the same hit puts it in the air with its feet
+	#trailing, and the tumble falls out of the contact solve for free - which is how
+	#the physics ragdolls that look right get it, rather than by authoring spin.
+	#0 restores the old flat-only behaviour. 0.55 is about the ratio those mods use.
+	#Range: 0.0 ~ 4.0
+	verticalLift = 0.55
+	#Scale the impulse by sqrt(damage / damageReference).
+	damageScaling = false
+	#Damage value at which the impulse equals the base magnitude.
+	#Range: 0.1 ~ 100.0
+	damageReference = 6.0
+	#Gain on where the killer was actually looking, as a multiplier on how far off
+	#the middle of the struck part their aim landed.
+	#The wound point already comes from the killer's own eye ray - clipped against
+	#the target for a melee swing, taken from the bullet's own segment for a shot -
+	#so how far to one side of the chest they aimed is known exactly. This decides
+	#how much of a turn that is worth.
+	#It is a gain and not a target, which matters: an earlier version moved the wound
+	#to the edge of the part whenever the aim was off centre AT ALL, so a hair right
+	#of the middle turned the body exactly as hard as a shot through the ribs, and
+	#everything read as either straight over or fully round with nothing between. A
+	#gain gives the gradient instead - a hit a third of the way out turns a third as
+	#hard - and leaves dead centre as the only point that makes no turn of its own.
+	#1 is honest geometry. Above that exaggerates, which is what most games ship.
+	#The result is still capped at the part's own silhouette, so this cannot fling a
+	#wound off the body it landed on.
+	#Range: 0.0 ~ 8.0
+	aimSpread = 2.0
+	#How much a shot that crosses the body obliquely is assumed to have passed to one
+	#side of its centre, as a fraction of the struck part's half-width.
+	#This covers the one case aimSpread above cannot: a shot aimed at the MIDDLE of a
+	#part enters on the line through that middle, so its across-the-shot lever is
+	#identically zero however far round the shooter stood, and no gain rescues a zero.
+	#The further off the mob's facing the shot runs, the more of the body lies to one
+	#side of its line, so the lever gets a floor that grows with that angle: nothing
+	#dead ahead, the full half-width from square-on.
+	#Its sign is the direction the shot crosses in and nothing else, so it holds
+	#steady from dead ahead round to from behind rather than turning over partway.
+	#Added to the aimed term rather than replacing it, so aiming off centre on an
+	#oblique shot still counts for what it is worth.
+	#0 leaves centred oblique shots making no turn, which is honest but reads dead.
+	#Range: 0.0 ~ 1.0
+	attackerSideBias = 1.0
+	#How much of a death hit's turn is measured from the ground under the body rather
+	#than from its centre of mass, 0 to 1.
+	#A hit is handed to the skeleton as one rigid body, and a free rigid body turns
+	#about its centre of mass - correct for a corpse already in the air, and wrong for
+	#the far commoner case of one still standing on its feet. A person shot in the
+	#chest goes over because the boots are pinned by friction and the lever is chest
+	#height above the floor, not the hand's width between the wound and the navel.
+	#Measuring from the CoM removes precisely the term that topples bodies, which is
+	#why a square chest hit slid instead of falling.
+	#So while the feet are near the ground the lever is taken from the support point
+	#instead, blended by this much. Only the first, death-time hit: a corpse already
+	#lying down has no feet under it to lever against.
+	#0 restores the pure free-body answer.
+	#Range: 0.0 ~ 1.0
+	groundLever = 0.7
+	#Width of the band up the middle of a chest that counts as a dead-centre hit,
+	#as a fraction of the mob's width. Inside it the hit is treated as square-on and
+	#makes no turn of its own.
+	#0 by default, which switches the special case off: a hit up the exact middle has
+	#a lever of nearly zero and makes almost no torque anyway, so the ordinary path
+	#already gives the right answer, and the special case only ever took the turn out
+	#of shots that should have had one.
+	#Range: 0.0 ~ 0.5
+	centerLeeway = 0.0
+	#Scale applied to a hit inside the centerLeeway band. Unused while that is 0.
+	#Range: 0.0 ~ 2.0
+	centerDistributionScale = 0.85
+	#Extra kick given to the limb that was actually hit, on top of the push and the
+	#turn the whole body already takes. This is the part that makes an arm snap back
+	#or a foot kick out, and it is the only thing that distinguishes a hit to the left
+	#leg from a hit to the right one once the body itself is moving.
+	#It is a fraction of the hit, added on top, so 0.45 means a body shot delivers
+	#about one and a half times the momentum the impulse settings name. 0 turns it off
+	#and leaves a shot ragdoll moving as one rigid piece, which reads dead.
+	#This is the baseline, before limbWhipMassBias below adjusts it per limb.
+	#Range: 0.0 ~ 3.0
+	limbWhip = 0.45
+	#How much the whip runs against the limb's own weight, as an exponent on the
+	#ratio between the skeleton's average part mass and this limb's.
+	#0 whips every part equally. 1 makes the whip inversely proportional to mass, so
+	#a 1.4 kg arm flails and an 18 kg torso barely notices - which is right, because
+	#a torso hit should turn the whole body rather than rattle the chest inside it.
+	#Range: 0.0 ~ 2.0
+	limbWhipMassBias = 0.6
+	#Extra weight on the rotational half of the hit. 1.0 is what the physics gives;
+	#above that a shot to one side of the body whips it round harder than it really
+	#would, which is the exaggeration most games ship.
+	#Range: 0.0 ~ 5.0
+	spinScale = 1.35
+	#Log every death hit the server resolves: which part it landed on, where on the
+	#body in the mob's own frame (right / up from the feet / forward), which resolver
+	#answered, and the impulse. For working out whether a shot that did not look
+	#right was aimed somewhere other than where it landed.
+	#Server log only, one line a kill. Off by default.
+	logResolvedHits = false
+	#Post-spawn ragdoll interaction multiplier for torso hits.
+	#Range: 0.0 ~ 10.0
+	partMultiplierTorso = 1.0
+	#Post-spawn ragdoll interaction multiplier for head hits.
+	#Range: 0.0 ~ 10.0
+	partMultiplierHead = 1.25
+	#Post-spawn ragdoll interaction multiplier for left leg hits.
+	#Range: 0.0 ~ 10.0
+	partMultiplierLeftLeg = 0.75
+	#Post-spawn ragdoll interaction multiplier for right leg hits.
+	#Range: 0.0 ~ 10.0
+	partMultiplierRightLeg = 0.75
+	#Post-spawn ragdoll interaction multiplier for left arm hits.
+	#Range: 0.0 ~ 10.0
+	partMultiplierLeftArm = 1.1
+	#Post-spawn ragdoll interaction multiplier for right arm hits.
+	#Range: 0.0 ~ 10.0
+	partMultiplierRightArm = 1.1
+	#Death-time multiplier for torso hits.
+	#Range: 0.0 ~ 10.0
+	deathPartMultiplierTorso = 2.5
+	#Death-time multiplier for head hits.
+	#Range: 0.0 ~ 10.0
+	deathPartMultiplierHead = 2.0
+	#Death-time multiplier for left leg hits.
+	#Range: 0.0 ~ 10.0
+	deathPartMultiplierLeftLeg = 8.0
+	#Death-time multiplier for right leg hits.
+	#Range: 0.0 ~ 10.0
+	deathPartMultiplierRightLeg = 8.0
+	#Death-time multiplier for left arm hits.
+	#Range: 0.0 ~ 10.0
+	deathPartMultiplierLeftArm = 8.0
+	#Death-time multiplier for right arm hits.
+	#Range: 0.0 ~ 10.0
+	deathPartMultiplierRightArm = 8.0
+
+#Humanoid Joint Limits
+#How far each humanoid joint may bend, in degrees, before the constraint stops it.
+#Three axes per joint: x is pitch (forward and back), y is twist about the limb,
+#z is roll (out to the side). Each has a min and a max, and they are not
+#symmetric on purpose - a knee-less leg swings much further forward than back.
+#
+#These apply to the humanoid skeleton only: players, zombies, skeletons, villagers
+#and the rest that use it. Every other mob keeps the limits authored for its own
+#anatomy, because a cow hip and a player hip are not the same joint.
+#
+#Wider limits read as looser and more fluid and let a body fold flatter when it
+#lands on a limb; narrower ones hold a pose and can leave a corpse propped on an
+#arm. Past about 120 degrees a joint stops resisting at all and limbs pass through
+#poses no body reaches.
+[humanoidJointLimits]
+	#Multiplier on how far every joint may twist and roll. Unlike the six figures below
+	#this is not humanoid-only: it applies on top of the limits here and on top of the
+	#anatomy every other mob has authored for it.
+	#
+	#Jolt's 6-DoF rotation limits are hard stops - unlike its translation limits they take
+	#no spring settings - so a limb does not resist as it approaches one, it arrives at a
+	#wall. Twist was the tightest axis on the rig by a wide margin (35 degrees at the hip,
+	#50 at the shoulder), and a limb that cannot rotate about its own length is most of
+	#what reads as a stiff corpse. Sable's ragdolls leave all three rotation axes free and
+	#hold the rest pose with a weak motor instead; see freeAngularAxes below for that.
+	#
+	#Pitch is deliberately not scaled. The hip's 75-degree forward maximum is a measured
+	#figure, not a chosen one: past it a leg folds far enough to jack-knife under the body
+	#and prop the hips off the ground.
+	#Range: 0.25 ~ 4.0
+	rangeScale = 1.5
+	#Remove every angular limit and let the joint relaxation springs alone decide the pose,
+	#which is how Sable's ragdolls are built. Limbs can then reach any angle and are only
+	#ever pulled back, so nothing can slam into a stop - at the cost of poses no body
+	#reaches, most visibly a head that can rotate the whole way round.
+	#
+	#Requires the relaxation spring below: with this on and the frequency at 0, a body has
+	#nothing holding it together but its anchors and will fold flat.
+	freeAngularAxes = false
+
+	#Angular limits for the neck, the head on the torso.
+	[humanoidJointLimits.neck]
+		#Range: -180.0 ~ 180.0
+		minPitch = -40.0
+		#Range: -180.0 ~ 180.0
+		minTwist = -35.0
+		#Range: -180.0 ~ 180.0
+		minRoll = -35.0
+		#Range: -180.0 ~ 180.0
+		maxPitch = 40.0
+		#Range: -180.0 ~ 180.0
+		maxTwist = 55.0
+		#Range: -180.0 ~ 180.0
+		maxRoll = 35.0
+
+	#Angular limits for the hip, a leg on the torso.
+	[humanoidJointLimits.hip]
+		#Range: -180.0 ~ 180.0
+		minPitch = -55.0
+		#Range: -180.0 ~ 180.0
+		minTwist = -35.0
+		#Range: -180.0 ~ 180.0
+		minRoll = -45.0
+		#Range: -180.0 ~ 180.0
+		maxPitch = 75.0
+		#Range: -180.0 ~ 180.0
+		maxTwist = 35.0
+		#Range: -180.0 ~ 180.0
+		maxRoll = 45.0
+
+	#Angular limits for the shoulder, an arm on the torso.
+	[humanoidJointLimits.shoulder]
+		#Range: -180.0 ~ 180.0
+		minPitch = -120.0
+		#Range: -180.0 ~ 180.0
+		minTwist = -50.0
+		#Range: -180.0 ~ 180.0
+		minRoll = -95.0
+		#Range: -180.0 ~ 180.0
+		maxPitch = 120.0
+		#Range: -180.0 ~ 180.0
+		maxTwist = 50.0
+		#Range: -180.0 ~ 180.0
+		maxRoll = 95.0
+
+	#Joint relaxation.
+	#
+	#Limits say what a joint may not do. They say nothing about what it does when left
+	#alone, so with limits alone a limb stops wherever its swing ran out and a body keeps
+	#whatever shape it landed in - which is what reads as a stiff, posed corpse. These
+	#add a weak spring in every joint pulling back toward the pose the rig was authored
+	#in, so limbs gather themselves instead of holding a position.
+	#
+	#The torque ceiling is what keeps this from standing a corpse up: it is well under
+	#what would be needed to lift a limb, so the spring can only take up slack. Measured
+	#on the bench (gradlew runRagdollRig): a raised arm comes to rest 1.5 to 2.7 degrees
+	#off hanging with the spring on, against 7.9 degrees with limits alone, and a dropped
+	#body still puts its torso flat on the floor in every trial.
+	#
+	#Set the frequency to 0 to turn this off entirely and go back to limits alone.
+	#Jolt only - the JBullet fallback engine has no equivalent and ignores these.
+	[humanoidJointLimits.jointRelaxation]
+		#Spring rate for arms and legs, in Hz. Higher gathers a limb up faster and looks
+		#more muscular; lower is looser and more dead-weight. 0 disables relaxation.
+		#
+		#This is the knob that decides whether limbs read as stiff, far more than the joint
+		#limits do - at 1 Hz the spring wins long before a limb reaches any of them. On the
+		#bench (gradlew runRagdollRig -Drig.mode=arm), an arm released from 90 degrees:
+		#
+		#  spring off   swings back up 29 deg, still moving at 3.9 s   - free pendulum
+		#  1.0 Hz       swings back up 10 deg, dead still at 1.2 s
+		#  0.3 Hz       swings back up 25 deg, dead still at 2.7 s
+		#
+		#0.3 keeps 85% of a free arm's swing and still brings it to rest 2.1 degrees off
+		#hanging, so a corpse gathers itself rather than holding the pose it landed in.
+		#Range: 0.0 ~ 20.0
+		frequency = 0.3
+		#1.0 is critically damped, so a limb arrives at rest without bouncing. Below 1 it
+		#overshoots and swings back, above 1 it creeps in slowly.
+		#
+		#Under 1 on purpose: a critically damped spring cannot swing past its target, so it
+		#takes every pendulum out of the body. The neck multiplies the frequency above but
+		#shares this figure, and being that much stiffer it settles almost instantly anyway,
+		#so the overshoot lands on the limbs where it is wanted.
+		#Range: 0.0 ~ 10.0
+		damping = 0.5
+		#Ceiling on how hard a joint may pull, in newton-metres. This is the safety rail:
+		#raise it far and a body will start posing itself instead of lying where it fell.
+		#Range: 0.0 ~ 100.0
+		maxTorque = 1.5
+		#How much of the spring survives while the body is off the ground and falling.
+		#1 keeps it at full strength the whole way down; 0 lets go of every joint until
+		#the body lands.
+		#
+		#The spring exists to stop a corpse holding the shape it landed in, which is a
+		#question about a body at rest. In the air it has nothing to do but hold the pose
+		#the body died in, and it is strong enough to win: measured on the bench over a
+		#two-second fall, with the spring at full strength the legs move 1.7 degrees and
+		#the head 0.1, against 25 and 19 with it off. That is the difference between a
+		#body that falls and a statue that descends.
+		#
+		#Not zero by default only because the neck is a multiple of this: with nothing at
+		#all holding it a head can rotate further than a neck goes on a long drop.
+		#Range: 0.0 ~ 1.0
+		airborneScale = 0.15
+
+#Per-Body-Part Weight Settings
+#Multiplier on each body part's authored mass. 1.0 leaves a skeleton exactly as
+#it was built. Heavier parts resist knockback and pull the body toward them as
+#it falls; lighter parts flail more.
+#These apply to every skeleton, not just the humanoid, so a cow keeps its own
+#mass distribution and is only scaled by what you set here.
+#These are multiplied by physics.massScale, which remains a global scalar.
+#
+#This section replaces the old 'partWeights' block, which held absolute weights
+#that had to be kept in step with the skeleton the mod ships. They no longer do:
+#the weights live in the skeleton and this only scales them. An old partWeights
+#block is ignored and removed.
+[partWeightMultipliers]
+	#Weight multiplier for the torso.
+	#Range: 0.05 ~ 20.0
+	torso = 1.0
+	#Weight multiplier for the head.
+	#Range: 0.05 ~ 20.0
+	head = 1.0
+	#Weight multiplier for the left arm.
+	#Range: 0.05 ~ 20.0
+	leftArm = 1.0
+	#Weight multiplier for the right arm.
+	#Range: 0.05 ~ 20.0
+	rightArm = 1.0
+	#Weight multiplier for the left leg.
+	#Range: 0.05 ~ 20.0
+	leftLeg = 1.0
+	#Weight multiplier for the right leg.
+	#Range: 0.05 ~ 20.0
+	rightLeg = 1.0
+
+#Physics Settings
+[physics]
+	#World gravity used by ragdoll physics.
+	#Range: 0.0 ~ 50.0
+	gravity = 15.0
+	#Multiplier for rigid body mass.
+	#Range: 0.05 ~ 20.0
+	massScale = 1.0
+	#Scale applied after inheriting the entity's exact death-time velocity.
+	#1.0 preserves its movement; lower values intentionally reduce momentum.
+	#Range: 0.0 ~ 5.0
+	initialVelocityScale = 1.0
+	#Damp inherited velocity and hit knockback on ragdolls smaller than a player.
+	#Impulses are a fixed magnitude, so a light body (chicken, bat, bee, rabbit) picks up far
+	#more speed from the same hit than a humanoid and gets launched. Bodies at player size or
+	#larger are never affected — this only reduces, never boosts.
+	scaleVelocityByModelSize = true
+	#Floor for the size damping above, so the very smallest ragdolls still react to hits.
+	#The multiplier is the body's height relative to a player (1.8 blocks), clamped to this
+	#minimum. Lower = smaller mobs fly less; 1.0 disables the damping entirely.
+	#Range: 0.05 ~ 1.0
+	minModelSizeVelocityScale = 0.25
+	#Minimum horizontal speed given to a nearly stationary death in the attacker's look direction,
+	#in blocks per second. Set to 0 to disable directional death carry.
+	#Range: 0.0 ~ 20.0
+	directionalCarrySpeed = 0.75
+	#Per-tick linear (movement) velocity damping. 0 = none, 1 = bodies stop almost instantly.
+	#Higher makes ragdolls bleed off momentum faster so they don't slide as far.
+	#Range: 0.0 ~ 1.0
+	linearDamping = 0.1
+	#Per-tick angular (spin) velocity damping. 0 = none, 1 = spin stops almost instantly.
+	#Higher makes ragdolls stop tumbling/rotating faster.
+	#This was 0.90, which on the Jolt backend bleeds about 59% of a body's spin away
+	#every second and on JBullet nearer 90%. Whatever turn a hit managed to impart was
+	#gone before it read as one. Rapier-based ragdolls ship around 0.05; 0.15 keeps
+	#enough to settle piles without eating the tumble.
+	#Range: 0.0 ~ 1.0
+	angularDamping = 0.15
+	#How much of the linear damping above is redistributed between body parts by how
+	#much air each one actually catches. 0 gives every part the same figure; 1 gives
+	#each the one its own shape earns.
+	#
+	#This is what decides whether a falling body looks alive. Gravity accelerates every
+	#part of a ragdoll at the same rate - that is what gravity does - so in free fall
+	#nothing pulls a limb away from the torso, the joints carry no load, and a body
+	#dropped off a cliff keeps the pose it left with the whole way down. Loosening the
+	#joints cannot fix that: there is no force for a looser joint to respond to.
+	#
+	#What throws a skydiver's limbs back is air. Drag goes with frontal area while weight
+	#goes with volume, so the slowing a part feels from the air is its area over its mass,
+	#and across a body that ratio is nowhere near equal - an arm's is 7.5 times a torso's,
+	#a leg's 2.3 times. Split the damping that way and the light broad parts are held back
+	#while the dense torso runs on ahead, which at the shoulder is a torque, which is the
+	#arm sweeping up. The falling pose stops being authored and starts being a consequence.
+	#
+	#The split is mass-weighted, so the body as a whole keeps exactly the drag the figure
+	#above gives it and only the share between its parts changes. Fall speed is unaffected,
+	#at any setting here.
+	#
+	#1 is the honest split: each part damped by the ratio its own shape earns. Past 1 the
+	#ratio is raised to that power instead, which is caricature rather than physics - at 2
+	#an arm sits around 24 times the torso's damping against the true 7.5, and the limbs
+	#trail further than air alone would take them. Worth having, because a ragdoll is read
+	#at a distance and in about half a second. Past roughly 2.5 the torso is so slippery
+	#next to its limbs that a body reads as coming apart rather than falling.
+	#Range: 0.0 ~ 4.0
+	differentialDrag = 1.0
+	#Surface friction for ragdoll bodies and for the block geometry they land on.
+	#Engines combine a contact's two frictions rather than taking one of them: Jolt uses
+	#sqrt(a*b). This was 2.0 against terrain left at the engine default of 0.2, which
+	#combines to 0.63 - but two ragdolls touching each other combined to 2.0, and a pile
+	#welded solid instead of sliding apart. The same figure is now given to the static
+	#block bodies, so a body on the ground still sees ~0.65 and a pile sees 0.65 too.
+	#Range: 0.0 ~ 5.0
+	friction = 0.65
+	#Bounciness on impact. 0 = no bounce, 1 = fully elastic. Keep low to avoid jittery bodies.
+	#Range: 0.0 ~ 2.0
+	restitution = 0.0
+	#Hard cap on a body's overall speed in blocks/second. Limits the solver to keep it stable.
+	#Range: 1.0 ~ 500.0
+	maxLinearSpeed = 90.0
+	#Hard cap on spin rate in radians/second. Prevents bodies from spinning wildly on hard hits.
+	#Range: 0.1 ~ 100.0
+	maxAngularSpeed = 8.0
+	#Max ragdolls actively simulated at once. Past this the oldest active bodies are force-settled
+	#(they keep rendering and can be woken again) to protect tick time during pile-ups.
+	#This is the setting that costs frames, since settled bodies are nearly free. Raise it if the
+	#physics= figure in the perf log leaves headroom.
+	#Range: 1 ~ 1000
+	maxActiveRagdolls = 40
+	#Max ragdoll bodies constructed per tick, so a mass kill (e.g. an explosion) doesn't spike one frame.
+	#Spawns over the budget wait in the queue below rather than being dropped, so a low number costs
+	#latency, not bodies.
+	#Range: 1 ~ 200
+	maxSpawnsPerTick = 15
+	#Max ragdoll spawns waiting to be constructed. Deaths beyond this while the queue is full are skipped.
+	#Range: 1 ~ 2000
+	maxSpawnQueueSize = 60
+	#How long a ragdoll must lie still before it freezes, in ticks (20 = one second).
+	#Frozen bodies stop simulating and cost almost nothing, so a shorter delay is faster and a
+	#longer one keeps bodies loose enough to be nudged and to finish toppling. The displacement
+	#fallback, which catches bodies that jiggle in a heap without going anywhere, waits twice this.
+	#Range: 5 ~ 200
+	settleDelayTicks = 20
+	#Distance in blocks beyond which ragdoll physics freezes.
+	#Range: 4.0 ~ 512.0
+	physicsDistance = 128.0
+	#Distance in blocks within which player movement pushes ragdolls.
+	#Range: 0.0 ~ 128.0
+	playerCollisionDistance = 12.0
+

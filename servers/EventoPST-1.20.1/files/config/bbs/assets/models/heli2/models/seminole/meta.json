@@ -1,0 +1,23 @@
+{
+  "model_name": "geometry.seminole",
+  "clean_name": "seminole",
+  "format_version": "1.12.0",
+  "bone_count": 15,
+  "cube_count": 173,
+  "texture_width": 128.0,
+  "texture_height": 128.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "seminole.png",
+  "conversion_date": "2026-10-16T15:49:37.966276400+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "seminole.png"
+  ],
+  "entity_identifier": "plane:seminole",
+  "animations": [
+    "rotors",
+    "animation.seminole.rotors",
+    "drive",
+    "animation.seminole.drive"
+  ]
+}

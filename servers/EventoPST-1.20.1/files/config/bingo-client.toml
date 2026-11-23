@@ -1,0 +1,4 @@
+[board]
+	corner = "UPPER_RIGHT"
+	scale = 1.0
+	showScoreCounter = true

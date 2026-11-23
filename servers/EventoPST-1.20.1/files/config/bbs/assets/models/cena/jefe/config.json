@@ -1,0 +1,25 @@
+{
+    "culling": true,
+    "cem_parents": {},
+    "ui_scale": 1.0,
+    "scale": [1.0, 1.0, 1.0],
+    "procedural": true,
+    "on_cpu": true,
+    "disabledBones": [],
+    "welds": [],
+    "procedural_bones": {
+        "head": "head",
+        "right_arm": "",
+        "left_leg": "left_leg",
+        "torso": "body",
+        "left_arm": "",
+        "right_leg": "right_leg",
+        "anchor": ""
+    },
+    "pose_group": "",
+    "anchor": "",
+    "sneaking_pose": {
+        "pose": {}
+    },
+    "cem_animation": true
+}

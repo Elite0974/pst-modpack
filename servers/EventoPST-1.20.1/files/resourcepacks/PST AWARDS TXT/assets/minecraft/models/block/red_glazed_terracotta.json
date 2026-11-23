@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "minecraft:block/polished_diorite",
+    "up": "minecraft:block/polished_diorite",
+    "down": "minecraft:block/polished_diorite",
+    "north": "minecraft:block/carap1",
+    "south": "minecraft:block/polished_diorite",
+    "east": "minecraft:block/carap2",
+    "west": "minecraft:block/polished_diorite"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/centenario/centenario.png",
+  "actions": {
+    "idle": {
+      "name": "drive",
+      "loop": true
+    }
+  }
+}

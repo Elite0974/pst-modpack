@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/458/458.png",
+  "actions": {
+    "idle": {
+      "name": "animation.458.drive",
+      "loop": true
+    }
+  }
+}

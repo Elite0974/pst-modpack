@@ -1,0 +1,33 @@
+{
+  "model_name": "geometry.centenario",
+  "clean_name": "centenario",
+  "format_version": "1.12.0",
+  "bone_count": 20,
+  "cube_count": 325,
+  "texture_width": 256.0,
+  "texture_height": 256.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "centenarioyellowcoupe.png",
+  "conversion_date": "2026-10-16T15:49:39.177485900+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "centenarioblackbluecoupe.png",
+    "centenarioblackorangecoupe.png",
+    "centenarioblackredcoupe.png",
+    "centenarioblackredroadster.png",
+    "centenarioblackyellowcoupe.png",
+    "centenarioblackyellowroadster.png",
+    "centenarioblueroadster.png",
+    "centenariograyorangeroadster.png",
+    "centenariograyroadster.png",
+    "centenariogreencoupe.png",
+    "centenarioredblackroadster.png",
+    "centenariowhiteblueroadster.png",
+    "centenariowhiteredroadster.png"
+  ],
+  "entity_identifier": "lamborghini:centyellowcoupe",
+  "animations": [
+    "drive",
+    "animation.centenario.drive"
+  ]
+}

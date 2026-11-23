@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/corvettec2/corvettec2.png",
+  "actions": {
+    "idle": {
+      "name": "drive",
+      "loop": true
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "model_name": "geometry.agera",
+  "clean_name": "agera",
+  "format_version": "1.12.0",
+  "bone_count": 17,
+  "cube_count": 245,
+  "texture_width": 256.0,
+  "texture_height": 256.0,
+  "texture_file": "texture.png",
+  "original_texture_name": "agerawhite.png",
+  "conversion_date": "2026-10-16T15:49:38.095813800+00:00",
+  "converter": "Bedrock to BBS Auto-Packer",
+  "additional_textures": [
+    "agerablue.png",
+    "ageranfsred.png",
+    "ageranfssilver.png",
+    "ageranfswhite.png",
+    "agerapurple.png",
+    "agerared.png"
+  ],
+  "entity_identifier": "koenigsegg:agerawhite",
+  "animations": [
+    "drive",
+    "animation.agera.drive"
+  ]
+}

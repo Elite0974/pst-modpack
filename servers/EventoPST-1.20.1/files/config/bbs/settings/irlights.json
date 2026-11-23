@@ -1,0 +1,41 @@
+{
+    "outline": {
+        "outline_pixel_size": 6,
+        "outline_fresnel_power": 2.2,
+        "outline": true,
+        "outline_glow_strength": 0.12,
+        "outline_glow": false,
+        "outline_front": false,
+        "outline_back": 1.0,
+        "outline_target": 1,
+        "outline_strength": 0.65,
+        "outline_front_strength": 0.3
+    },
+    "presets": {
+        "max_shader_lights": 0,
+        "show_guides": false,
+        "vl_intensity": 1.0
+    },
+    "patcher": {},
+    "volumetric": {
+        "vl_dither_temporal": true,
+        "vl_noise_live": true,
+        "vl_noise_scale": 2.0,
+        "vl_noise_speed": 0.25,
+        "vl_shadows_live": true,
+        "vl_steps": 48,
+        "vl_noise_stride": 2,
+        "vl_tip_radius": 1.5,
+        "vl_noise_morph": 0.0,
+        "vl_noise_amount": 0.6,
+        "vl_shadow_stride": 2,
+        "vl_max_dist": 96.0,
+        "vl_tip_boost": 1.5
+    },
+    "shadows": {
+        "shadow_blocks": true,
+        "shadow_softness": 0.1,
+        "shadow_quality": 1,
+        "shadows_live": true
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/m3/m3.png",
+  "actions": {
+    "idle": {
+      "name": "drive",
+      "loop": true
+    }
+  }
+}

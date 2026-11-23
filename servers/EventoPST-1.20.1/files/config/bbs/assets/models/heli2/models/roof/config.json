@@ -1,0 +1,9 @@
+{
+  "texture": "assets:models/roof/roof.png",
+  "actions": {
+    "idle": {
+      "name": "first_person_hold",
+      "loop": true
+    }
+  }
+}

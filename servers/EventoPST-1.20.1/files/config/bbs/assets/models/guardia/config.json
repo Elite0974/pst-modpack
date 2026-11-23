@@ -1,0 +1,54 @@
+{
+    "items_off": [
+        {
+            "group": "left_arm"
+        }
+    ],
+    "culling": false,
+    "texture": "assets:models/guardia/llama.png",
+    "cem_parents": {},
+    "fp_main": {
+        "transform": {
+            "r": [0.0, 0.0, 0.0],
+            "s": [0.0, 1.0, 1.0],
+            "t": [0.0, 0.0, 0.0]
+        },
+        "group": "right_arm"
+    },
+    "ui_scale": 1.0,
+    "scale": [1.0, 1.0, 1.0],
+    "procedural": true,
+    "on_cpu": false,
+    "disabledBones": [],
+    "welds": [],
+    "items_main": [
+        {
+            "transform": {
+                "r": [0.0, 0.0, 0.0],
+                "s": [1.0, 1.0, 1.0],
+                "t": [0.0625, 0.09375, -0.71875]
+            },
+            "group": "right_arm"
+        }
+    ],
+    "pose_group": "",
+    "anchor": "body",
+    "sneaking_pose": {
+        "pose": {}
+    },
+    "fp_offhand": {
+        "group": "left_arm"
+    },
+    "cem_animation": true,
+    "armor_slots": {
+        "chest": {
+            "group": "body"
+        },
+        "right_arm": {
+            "group": "right_arm"
+        },
+        "left_arm": {
+            "group": "left_arm"
+        }
+    }
+}

@@ -1,0 +1,91 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.yjtest.drive": {
+			"loop": true,
+			"bones": {
+				"steering_wheel": {
+					"rotation": [32.5, 0, 0]
+				},
+				"root": {
+					"rotation": ["query.vertical_speed*-1", 0, 0],
+					"scale": 1.7
+				},
+				"body": {
+					"rotation": [0, 0, "variable.steering / 90"]
+				},
+				"Wheel1": {
+					"rotation": ["query.modified_distance_moved * 20", "variable.steering / 3", 0]
+				},
+				"Wheel2": {
+					"rotation": ["query.modified_distance_moved * 20", 0, 0]
+				},
+				"Wheel4": {
+					"rotation": ["query.modified_distance_moved * 20", "variable.steering / 3", 0]
+				},
+				"Wheel3": {
+					"rotation": ["query.modified_distance_moved * 20", 0, 0]
+				},
+				"Steering": {
+					"rotation": [0, 0, "variable.steering * -0.6"]
+				},
+				"wipers": {
+					"rotation": [-22.5, 0, 0]
+				}
+			}
+		},
+		"animation.yjtest.roofed": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"SoftTop": {
+					"position": [0, 9, -12],
+					"scale": 0
+				},
+				"Hardtop": {
+					"position": [0, 9, -12],
+					"scale": 0
+				}
+			}
+		},
+		"animation.yjtest.roofless": {
+			"loop": true,
+			"bones": {
+				"SoftTop": {
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"Hardtop": {
+					"position": [0, 0, 0],
+					"scale": 1
+				}
+			}
+		},
+		"animation.yjtest.rain": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"wipers": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": [-22.5, 0, 0],
+					"scale": 1.7
+				},
+				"w1": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.5": [0, 0, 110],
+						"1.0": [0, 0, 0]
+					}
+				},
+				"w2": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.5": [0, 0, 110],
+						"1.0": [0, 0, 0]
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,63 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.cherokee.rotors": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"prop": {
+					"rotation": [-5, 0, 0]
+				},
+				"bone": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"1.0": [0, 0, 720]
+					}
+				}
+			}
+		},
+		"animation.piper.drive": {
+			"loop": true,
+			"bones": {
+				"cherokee": {
+					"rotation": ["query.vertical_speed*-1", "variable.steering / 6", "-variable.steering / 1.2"],
+					"position": [0, 0, 0]
+				},
+				"fl": {
+					"rotation": [-3.5, 0, -7.5]
+				},
+				"fr": {
+					"rotation": [-3.5, 0, 7.5]
+				},
+				"rear": {
+					"rotation": ["query.vertical_speed*1.2", 0, 0]
+				},
+				"bone2": {
+					"rotation": ["-variable.steering / 2", 0, 0],
+					"position": [0, 0, 0]
+				},
+				"bone3": {
+					"rotation": ["variable.steering / 2", 0, 0]
+				},
+				"root": {
+					"scale": 3
+				}
+			}
+		},
+		"animation.piper.rotors": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"prop": {
+					"rotation": [-5, 0, 0]
+				},
+				"bone": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"1.0": [0, 0, 720]
+					}
+				}
+			}
+		}
+	}
+}
