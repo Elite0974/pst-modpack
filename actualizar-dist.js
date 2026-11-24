@@ -9,8 +9,18 @@ const outFile = path.join(repoDir, "distribution.json");
 const rawBaseUrl =
   "https://raw.githubusercontent.com/Elite0974/pst-modpack/main";
 
+// Valores por defecto cuando se detecta una carpeta nueva en servers/
+const DEFAULT_MC_VERSION = "1.20.1";
+const DEFAULT_SERVER_VERSION = "1.0.0";
+const DEFAULT_ADDRESS = "localhost:25565";
+
 if (!fs.existsSync(baseFile)) {
   console.error("Error: no se encontró distribution.base.json en:", baseFile);
+  process.exit(1);
+}
+
+if (!fs.existsSync(serversRootDir)) {
+  console.error("Error: no se encontró la carpeta servers en:", serversRootDir);
   process.exit(1);
 }
 
@@ -37,6 +47,21 @@ function walkFiles(currentDir, acc = []) {
     }
   }
   return acc;
+}
+
+function createDefaultServerEntry(folderId, isFirst) {
+  return {
+    id: folderId,
+    name: `${folderId} (Minecraft ${DEFAULT_MC_VERSION})`,
+    description: `Instancia ${folderId}`,
+    icon: `${rawBaseUrl}/icons/${encodeURIComponent(folderId.toLowerCase())}.png`,
+    version: DEFAULT_SERVER_VERSION,
+    address: DEFAULT_ADDRESS,
+    minecraftVersion: DEFAULT_MC_VERSION,
+    mainServer: isFirst,
+    autoconnect: false,
+    modules: []
+  };
 }
 
 async function syncServerModules(server) {
@@ -105,10 +130,36 @@ async function main() {
   const rawBase = fs.readFileSync(baseFile, "utf8");
   const dist = JSON.parse(rawBase);
 
-  if (!Array.isArray(dist.servers) || dist.servers.length === 0) {
-    console.error("Error: no hay ningún servidor en distribution.base.json");
+  if (!Array.isArray(dist.servers)) {
+    dist.servers = [];
+  }
+
+  // Detecta todas las carpetas dentro de servers/ (excluyendo ocultas)
+  const detectedFolders = fs
+    .readdirSync(serversRootDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && !entry.name.startsWith("."))
+    .map((entry) => entry.name);
+
+  if (detectedFolders.length === 0) {
+    console.error("Error: no se encontraron carpetas de instancias en:", serversRootDir);
     process.exit(1);
   }
+
+  // Mantiene solo las instancias cuya carpeta existe en servers/
+  const existingMap = new Map(dist.servers.map((s) => [s.id, s]));
+  const finalServers = [];
+
+  for (let i = 0; i < detectedFolders.length; i++) {
+    const folderId = detectedFolders[i];
+    if (existingMap.has(folderId)) {
+      finalServers.push(existingMap.get(folderId));
+    } else {
+      finalServers.push(createDefaultServerEntry(folderId, i === 0));
+      console.log(`Nueva instancia detectada automáticamente: ${folderId}`);
+    }
+  }
+
+  dist.servers = finalServers;
 
   // Asegura exactamente un mainServer
   const mainCount = dist.servers.filter((s) => s.mainServer === true).length;
