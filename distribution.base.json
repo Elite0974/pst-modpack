@@ -18616,6 +18616,69 @@
           }
         }
       ]
+    },
+    {
+      "id": "testeooooo222",
+      "name": "testeooooo222 (Minecraft 1.20.1)",
+      "description": "Instancia testeooooo222",
+      "icon": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/icons/testeooooo222.png",
+      "version": "1.0.0",
+      "address": "localhost:25565",
+      "minecraftVersion": "1.20.1",
+      "mainServer": false,
+      "autoconnect": false,
+      "modules": [
+        {
+          "id": "generated.forgemod:testeooooo222:create-1.20.1-6.0.8@jar",
+          "name": "create-1.20.1-6.0.8",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 19170905,
+            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/testeooooo222/forgemods/required/create-1.20.1-6.0.8.jar",
+            "MD5": "6ebc5c57638c1678359eac65b924c310"
+          }
+        },
+        {
+          "id": "generated.forgemod:testeooooo222:embeddium-0.3.31+mc1.20.1@jar",
+          "name": "embeddium-0.3.31+mc1.20.1",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 1320675,
+            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/testeooooo222/forgemods/required/embeddium-0.3.31%2Bmc1.20.1.jar",
+            "MD5": "1dfb2ee49ce9ad5d484ff3eea0d628b7"
+          }
+        },
+        {
+          "id": "generated.forgemod:testeooooo222:rubidium-extra-0.5.4.4+mc1.20.1-build.131@jar",
+          "name": "rubidium-extra-0.5.4.4+mc1.20.1-build.131",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 568608,
+            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/testeooooo222/forgemods/required/rubidium-extra-0.5.4.4%2Bmc1.20.1-build.131.jar",
+            "MD5": "a96fb0a07b75eb07b200e8f9c0dfb9f4"
+          }
+        },
+        {
+          "id": "generated.forgemod:testeooooo222:sodiumdynamiclights-forge-1.0.10-1.20.1@jar",
+          "name": "sodiumdynamiclights-forge-1.0.10-1.20.1",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 511601,
+            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/testeooooo222/forgemods/required/sodiumdynamiclights-forge-1.0.10-1.20.1.jar",
+            "MD5": "687c18cefa558ca8101ef97914d9ba6b"
+          }
+        },
+        {
+          "id": "generated.forgemod:testeooooo222:sodiumoptionsapi-forge-1.0.10-1.20.1@jar",
+          "name": "sodiumoptionsapi-forge-1.0.10-1.20.1",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 443978,
+            "url": "https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/testeooooo222/forgemods/required/sodiumoptionsapi-forge-1.0.10-1.20.1.jar",
+            "MD5": "75807590ae2648ecdeb855705868ce59"
+          }
+        }
+      ]
     }
   ]
 }
