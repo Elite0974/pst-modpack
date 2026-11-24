@@ -8,7 +8,7 @@ const baseFile = path.join(repoDir, "distribution.base.json");
 const outFile = path.join(repoDir, "distribution.json");
 
 if (!fs.existsSync(baseFile)) {
-  console.error("Falta distribution.base.json en:", baseFile);
+  console.error("Error: no se encontró distribution.base.json en:", baseFile);
   process.exit(1);
 }
 
@@ -38,13 +38,18 @@ function walkFiles(currentDir, acc = []) {
 }
 
 async function main() {
-  const dist = JSON.parse(fs.readFileSync(baseFile, "utf8"));
-  const templateServer = dist.servers[0];
+  // Lee siempre desde distribution.base.json como única fuente base
+  const rawBase = fs.readFileSync(baseFile, "utf8");
+  const dist = JSON.parse(rawBase);
 
-  if (!templateServer) {
-    console.error("No hay ningún servidor base en distribution.base.json");
+  if (!Array.isArray(dist.servers) || dist.servers.length === 0) {
+    console.error("Error: no hay ningún servidor base en distribution.base.json");
     process.exit(1);
   }
+
+  // Clonamos el primer servidor como plantilla limpia para nuevas carpetas
+  const baseTemplate = JSON.parse(JSON.stringify(dist.servers[0]));
+  baseTemplate.modules = [];
 
   const folderServers = fs.existsSync(serversRootDir)
     ? fs
@@ -53,24 +58,28 @@ async function main() {
         .map((d) => d.name)
     : [];
 
-  // Asegura que todas las carpetas dentro de /servers existan en dist.servers
+  // Agrega carpetas nuevas de /servers si no están ya definidas en distribution.base.json
   for (const folderId of folderServers) {
-    let existing = dist.servers.find((s) => s.id === folderId);
-    if (!existing) {
-      existing = JSON.parse(JSON.stringify(templateServer));
-      existing.id = folderId;
-      existing.name = `${folderId} (Minecraft ${templateServer.minecraftVersion || "1.20.1"})`;
-      existing.description = `Instancia ${folderId}`;
-      existing.version = "1.0.0";
-      existing.mainServer = false;
-      existing.autoconnect = false;
-      dist.servers.push(existing);
-      console.log(`[Nueva instancia detectada] Se agregó "${folderId}" automáticamente.`);
+    const existsInBase = dist.servers.some((s) => s.id === folderId);
+    if (!existsInBase) {
+      const newServer = JSON.parse(JSON.stringify(baseTemplate));
+      newServer.id = folderId;
+      newServer.name = `${folderId} (Minecraft ${baseTemplate.minecraftVersion || "1.20.1"})`;
+      newServer.description = `Instancia ${folderId}`;
+      newServer.version = "1.0.0";
+      newServer.mainServer = false;
+      newServer.autoconnect = false;
+      dist.servers.push(newServer);
+      console.log(`[Nueva instancia] Se agregó "${folderId}" desde distribution.base.json.`);
     }
   }
 
-  // Completa mods y archivos de cada instancia
+  // Genera los módulos (mods y archivos) de cada servidor
   for (const server of dist.servers) {
+    if (!Array.isArray(server.modules)) {
+      server.modules = [];
+    }
+
     const serverId = server.id;
     const serverDir = path.join(serversRootDir, serverId);
     const forgeModsDir = path.join(serverDir, "forgemods", "required");
@@ -121,7 +130,7 @@ async function main() {
   }
 
   fs.writeFileSync(outFile, JSON.stringify(dist, null, 2), "utf8");
-  console.log("Listo: distribution.json generado con todas las instancias y sus mods.");
+  console.log("Listo: distribution.json generado exclusivamente desde distribution.base.json.");
 }
 
 main().catch((err) => {
