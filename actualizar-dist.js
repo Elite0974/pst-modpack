@@ -3,9 +3,6 @@ const path = require("path");
 const crypto = require("crypto");
 
 const repoDir = "D:\\pst-modpack-repo\\pst-modpack";
-const serverDir = path.join(repoDir, "servers", "EventoPST-1.20.1");
-const forgeModsDir = path.join(serverDir, "forgemods", "required");
-const filesRootDir = path.join(serverDir, "files");
 const baseFile = path.join(repoDir, "distribution.base.json");
 const outFile = path.join(repoDir, "distribution.json");
 
@@ -41,56 +38,59 @@ function walkFiles(currentDir, acc = []) {
 
 async function main() {
   const dist = JSON.parse(fs.readFileSync(baseFile, "utf8"));
-  const server = dist.servers.find((s) => s.id === "EventoPST-1.20.1");
 
-  if (!server) {
-    console.error("No se encontró el servidor EventoPST-1.20.1");
-    process.exit(1);
-  }
+  for (const server of dist.servers) {
+    const serverId = server.id;
+    const serverDir = path.join(repoDir, "servers", serverId);
+    const forgeModsDir = path.join(serverDir, "forgemods", "required");
+    const filesRootDir = path.join(serverDir, "files");
 
-  const forgeJars = fs.existsSync(forgeModsDir)
-    ? fs.readdirSync(forgeModsDir).filter((f) => f.toLowerCase().endsWith(".jar"))
-    : [];
+    const forgeJars = fs.existsSync(forgeModsDir)
+      ? fs.readdirSync(forgeModsDir).filter((f) => f.toLowerCase().endsWith(".jar"))
+      : [];
 
-  for (const file of forgeJars) {
-    const fullPath = path.join(forgeModsDir, file);
-    const { size, md5 } = await getFileInfo(fullPath);
-    const baseName = path.basename(file, ".jar");
+    for (const file of forgeJars) {
+      const fullPath = path.join(forgeModsDir, file);
+      const { size, md5 } = await getFileInfo(fullPath);
+      const baseName = path.basename(file, ".jar");
 
-    server.modules.push({
-      id: `generated.forgemod:${baseName}@jar`,
-      name: baseName,
-      type: "ForgeMod",
-      artifact: {
-        size,
-        url: `https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/forgemods/required/${encodeURIComponent(file)}`,
-        MD5: md5
-      }
-    });
-  }
+      server.modules.push({
+        id: `generated.forgemod:${serverId}:${baseName}@jar`,
+        name: baseName,
+        type: "ForgeMod",
+        artifact: {
+          size,
+          url: `https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/${encodeURIComponent(serverId)}/forgemods/required/${encodeURIComponent(file)}`,
+          MD5: md5
+        }
+      });
+    }
 
-  const extraFiles = walkFiles(filesRootDir);
+    const extraFiles = walkFiles(filesRootDir);
 
-  for (const fullPath of extraFiles) {
-    const { size, md5 } = await getFileInfo(fullPath);
-    const relPath = path.relative(filesRootDir, fullPath).split(path.sep).join("/");
-    const encodedUrlPath = relPath.split("/").map(encodeURIComponent).join("/");
+    for (const fullPath of extraFiles) {
+      const { size, md5 } = await getFileInfo(fullPath);
+      const relPath = path.relative(filesRootDir, fullPath).split(path.sep).join("/");
+      const encodedUrlPath = relPath.split("/").map(encodeURIComponent).join("/");
 
-    server.modules.push({
-      id: `generated.file:${relPath}`,
-      name: relPath,
-      type: "File",
-      artifact: {
-        size,
-        path: relPath,
-        url: `https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/EventoPST-1.20.1/files/${encodedUrlPath}`,
-        MD5: md5
-      }
-    });
+      server.modules.push({
+        id: `generated.file:${serverId}:${relPath}`,
+        name: relPath,
+        type: "File",
+        artifact: {
+          size,
+          path: relPath,
+          url: `https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/${encodeURIComponent(serverId)}/files/${encodedUrlPath}`,
+          MD5: md5
+        }
+      });
+    }
+
+    console.log(`[${serverId}] ${forgeJars.length} mods de Forge y ${extraFiles.length} archivos en files/.`);
   }
 
   fs.writeFileSync(outFile, JSON.stringify(dist, null, 2), "utf8");
-  console.log(`Listo: ${forgeJars.length} mods de Forge y ${extraFiles.length} archivos en files/ agregados.`);
+  console.log("Listo: distribution.json generado con todas las instancias.");
 }
 
 main().catch((err) => {
