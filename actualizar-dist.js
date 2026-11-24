@@ -3,6 +3,7 @@ const path = require("path");
 const crypto = require("crypto");
 
 const repoDir = "D:\\pst-modpack-repo\\pst-modpack";
+const serversRootDir = path.join(repoDir, "servers");
 const baseFile = path.join(repoDir, "distribution.base.json");
 const outFile = path.join(repoDir, "distribution.json");
 
@@ -38,10 +39,40 @@ function walkFiles(currentDir, acc = []) {
 
 async function main() {
   const dist = JSON.parse(fs.readFileSync(baseFile, "utf8"));
+  const templateServer = dist.servers[0];
 
+  if (!templateServer) {
+    console.error("No hay ningún servidor base en distribution.base.json");
+    process.exit(1);
+  }
+
+  const folderServers = fs.existsSync(serversRootDir)
+    ? fs
+        .readdirSync(serversRootDir, { withFileTypes: true })
+        .filter((d) => d.isDirectory() && !d.name.startsWith("."))
+        .map((d) => d.name)
+    : [];
+
+  // Asegura que todas las carpetas dentro de /servers existan en dist.servers
+  for (const folderId of folderServers) {
+    let existing = dist.servers.find((s) => s.id === folderId);
+    if (!existing) {
+      existing = JSON.parse(JSON.stringify(templateServer));
+      existing.id = folderId;
+      existing.name = `${folderId} (Minecraft ${templateServer.minecraftVersion || "1.20.1"})`;
+      existing.description = `Instancia ${folderId}`;
+      existing.version = "1.0.0";
+      existing.mainServer = false;
+      existing.autoconnect = false;
+      dist.servers.push(existing);
+      console.log(`[Nueva instancia detectada] Se agregó "${folderId}" automáticamente.`);
+    }
+  }
+
+  // Completa mods y archivos de cada instancia
   for (const server of dist.servers) {
     const serverId = server.id;
-    const serverDir = path.join(repoDir, "servers", serverId);
+    const serverDir = path.join(serversRootDir, serverId);
     const forgeModsDir = path.join(serverDir, "forgemods", "required");
     const filesRootDir = path.join(serverDir, "files");
 
@@ -90,7 +121,7 @@ async function main() {
   }
 
   fs.writeFileSync(outFile, JSON.stringify(dist, null, 2), "utf8");
-  console.log("Listo: distribution.json generado con todas las instancias.");
+  console.log("Listo: distribution.json generado con todas las instancias y sus mods.");
 }
 
 main().catch((err) => {
