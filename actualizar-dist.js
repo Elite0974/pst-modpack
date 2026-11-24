@@ -7,6 +7,8 @@ const serversRootDir = path.join(repoDir, "servers");
 const baseFile = path.join(repoDir, "distribution.base.json");
 const outFile = path.join(repoDir, "distribution.json");
 
+const SINGLE_SERVER_ID = "EventoPST-1.20.1";
+
 if (!fs.existsSync(baseFile)) {
   console.error("Error: no se encontró distribution.base.json en:", baseFile);
   process.exit(1);
@@ -38,99 +40,78 @@ function walkFiles(currentDir, acc = []) {
 }
 
 async function main() {
-  // Lee siempre desde distribution.base.json como única fuente base
   const rawBase = fs.readFileSync(baseFile, "utf8");
   const dist = JSON.parse(rawBase);
 
   if (!Array.isArray(dist.servers) || dist.servers.length === 0) {
-    console.error("Error: no hay ningún servidor base en distribution.base.json");
+    console.error("Error: no hay ningún servidor en distribution.base.json");
     process.exit(1);
   }
 
-  // Clonamos el primer servidor como plantilla limpia para nuevas carpetas
-  const baseTemplate = JSON.parse(JSON.stringify(dist.servers[0]));
-  baseTemplate.modules = [];
+  // Mantiene solo la instancia principal indicada
+  const targetServer =
+    dist.servers.find((s) => s.id === SINGLE_SERVER_ID) || dist.servers[0];
+  targetServer.mainServer = true;
+  dist.servers = [targetServer];
 
-  const folderServers = fs.existsSync(serversRootDir)
-    ? fs
-        .readdirSync(serversRootDir, { withFileTypes: true })
-        .filter((d) => d.isDirectory() && !d.name.startsWith("."))
-        .map((d) => d.name)
+  // Conserva solo módulos no generados (ej. ForgeHosted) y limpia los generados antes
+  targetServer.modules = (targetServer.modules || []).filter(
+    (m) =>
+      typeof m.id === "string" &&
+      !m.id.startsWith("generated.forgemod:") &&
+      !m.id.startsWith("generated.file:")
+  );
+
+  const serverId = targetServer.id;
+  const serverDir = path.join(serversRootDir, serverId);
+  const forgeModsDir = path.join(serverDir, "forgemods", "required");
+  const filesRootDir = path.join(serverDir, "files");
+
+  const forgeJars = fs.existsSync(forgeModsDir)
+    ? fs.readdirSync(forgeModsDir).filter((f) => f.toLowerCase().endsWith(".jar"))
     : [];
 
-  // Agrega carpetas nuevas de /servers si no están ya definidas en distribution.base.json
-  for (const folderId of folderServers) {
-    const existsInBase = dist.servers.some((s) => s.id === folderId);
-    if (!existsInBase) {
-      const newServer = JSON.parse(JSON.stringify(baseTemplate));
-      newServer.id = folderId;
-      newServer.name = `${folderId} (Minecraft ${baseTemplate.minecraftVersion || "1.20.1"})`;
-      newServer.description = `Instancia ${folderId}`;
-      newServer.version = "1.0.0";
-      newServer.mainServer = false;
-      newServer.autoconnect = false;
-      dist.servers.push(newServer);
-      console.log(`[Nueva instancia] Se agregó "${folderId}" desde distribution.base.json.`);
-    }
+  for (const file of forgeJars) {
+    const fullPath = path.join(forgeModsDir, file);
+    const { size, md5 } = await getFileInfo(fullPath);
+    const baseName = path.basename(file, ".jar");
+
+    targetServer.modules.push({
+      id: `generated.forgemod:${serverId}:${baseName}@jar`,
+      name: baseName,
+      type: "ForgeMod",
+      artifact: {
+        size,
+        url: `https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/${encodeURIComponent(serverId)}/forgemods/required/${encodeURIComponent(file)}`,
+        MD5: md5
+      }
+    });
   }
 
-  // Genera los módulos (mods y archivos) de cada servidor
-  for (const server of dist.servers) {
-    if (!Array.isArray(server.modules)) {
-      server.modules = [];
-    }
+  const extraFiles = walkFiles(filesRootDir);
 
-    const serverId = server.id;
-    const serverDir = path.join(serversRootDir, serverId);
-    const forgeModsDir = path.join(serverDir, "forgemods", "required");
-    const filesRootDir = path.join(serverDir, "files");
+  for (const fullPath of extraFiles) {
+    const { size, md5 } = await getFileInfo(fullPath);
+    const relPath = path.relative(filesRootDir, fullPath).split(path.sep).join("/");
+    const encodedUrlPath = relPath.split("/").map(encodeURIComponent).join("/");
 
-    const forgeJars = fs.existsSync(forgeModsDir)
-      ? fs.readdirSync(forgeModsDir).filter((f) => f.toLowerCase().endsWith(".jar"))
-      : [];
-
-    for (const file of forgeJars) {
-      const fullPath = path.join(forgeModsDir, file);
-      const { size, md5 } = await getFileInfo(fullPath);
-      const baseName = path.basename(file, ".jar");
-
-      server.modules.push({
-        id: `generated.forgemod:${serverId}:${baseName}@jar`,
-        name: baseName,
-        type: "ForgeMod",
-        artifact: {
-          size,
-          url: `https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/${encodeURIComponent(serverId)}/forgemods/required/${encodeURIComponent(file)}`,
-          MD5: md5
-        }
-      });
-    }
-
-    const extraFiles = walkFiles(filesRootDir);
-
-    for (const fullPath of extraFiles) {
-      const { size, md5 } = await getFileInfo(fullPath);
-      const relPath = path.relative(filesRootDir, fullPath).split(path.sep).join("/");
-      const encodedUrlPath = relPath.split("/").map(encodeURIComponent).join("/");
-
-      server.modules.push({
-        id: `generated.file:${serverId}:${relPath}`,
-        name: relPath,
-        type: "File",
-        artifact: {
-          size,
-          path: relPath,
-          url: `https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/${encodeURIComponent(serverId)}/files/${encodedUrlPath}`,
-          MD5: md5
-        }
-      });
-    }
-
-    console.log(`[${serverId}] ${forgeJars.length} mods de Forge y ${extraFiles.length} archivos en files/.`);
+    targetServer.modules.push({
+      id: `generated.file:${serverId}:${relPath}`,
+      name: relPath,
+      type: "File",
+      artifact: {
+        size,
+        path: relPath,
+        url: `https://raw.githubusercontent.com/Elite0974/pst-modpack/main/servers/${encodeURIComponent(serverId)}/files/${encodedUrlPath}`,
+        MD5: md5
+      }
+    });
   }
 
   fs.writeFileSync(outFile, JSON.stringify(dist, null, 2), "utf8");
-  console.log("Listo: distribution.json generado exclusivamente desde distribution.base.json.");
+  console.log(
+    `Listo [${serverId}]: ${forgeJars.length} mods y ${extraFiles.length} archivos en distribution.json.`
+  );
 }
 
 main().catch((err) => {
